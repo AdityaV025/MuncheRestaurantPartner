@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Munche Restaurant Partner</string>
+    <string name="appName">Munche</string>
+    <string name="restaurant_partner">Restaurant Partner</string>
+    <string name="mobile_no">Mobile No.</string>
+    <string name="or">or</string>
+    <string name="continue_with_google">Continue With Google</string>
+    <string name="continue_with_facebook">Continue With Facebook</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="termsandconditions">By Continuing. you agree to our terms of Service Privacy Policy and Content Policy</string>
+</resources>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="UI.LoginActivity"
+    android:padding="28dp"
+    android:background="@drawable/gradient_background">
+
+    <TextView
+        android:id="@+id/brandName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/appName"
+        android:layout_centerHorizontal="true"
+        android:textSize="36sp"
+        android:fontFamily="@font/raleway_black"
+        android:padding="8dp"
+        android:textColor="@color/lightWhite"/>
+
+    <TextView
+        android:id="@+id/subText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/restaurant_partner"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/lightWhite"
+        android:layout_below="@+id/brandName"
+        android:layout_centerHorizontal="true"/>
+
+    <RelativeLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/login_bottomcontainer_background">
+
+        <TextView
+            android:id="@+id/mobileNoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mobile_no"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans"/>
+
+        <RelativeLayout
+            android:id="@+id/loginContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mobileNoText">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCodeHolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                app:ccp_autoDetectCountry="true"
+                app:ccp_textSize="18sp" />
+
+            <EditText
+                android:id="@+id/loginInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/countryCodeHolder"
+                android:fontFamily="@font/open_sans_semibold"
+                android:hint="Phone Number * "
+                android:inputType="phone"
+                android:maxLength="10"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/sendOtpBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginContainer"
+            android:text="@string/send_otp"
+            android:textSize="18sp"
+            android:background="@drawable/login_btn_background"
+            android:textColor="#FFF"
+            android:textAllCaps="false"
+            android:fontFamily="@font/open_sans_semibold"
+            android:layout_marginTop="17dp"/>
+
+        <TextView
+            android:id="@+id/or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/or"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            android:layout_below="@+id/sendOtpBtn"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/facebookLoginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/or"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/other_login_btn_background"
+            android:drawableLeft="@drawable/fb_logo"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:gravity="left|center"
+            android:text="@string/continue_with_facebook"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/googleLoginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/facebookLoginBtn"
+            android:layout_marginTop="11dp"
+            android:background="@drawable/other_login_btn_background"
+            android:drawableLeft="@drawable/google_logo"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:gravity="left|center"
+            android:text="@string/continue_with_google"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/terms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/termsandconditions"
+            android:textAlignment="center"
+            android:textSize="13sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans"
+            android:layout_below="@+id/googleLoginBtn"
+            android:layout_marginTop="20dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
