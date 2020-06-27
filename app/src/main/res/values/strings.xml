@@ -8,4 +8,6 @@
     <string name="continue_with_facebook">Continue With Facebook</string>
     <string name="send_otp">Send OTP</string>
     <string name="termsandconditions">By Continuing. you agree to our terms of Service Privacy Policy and Content Policy</string>
+    <string name="textOtpVer">OTP Verification</string>
+    <string name="userNum">Enter the OTP sent to</string>
 </resources>
