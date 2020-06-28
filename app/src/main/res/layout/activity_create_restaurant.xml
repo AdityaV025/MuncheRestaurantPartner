@@ -1,9 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="UI.CreateRestaurantActivity">
+    tools:context="UI.CreateRestaurantActivity"
+    android:padding="18dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/regResText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_your_restaurant"
+            android:textColor="@color/colorAccent"
+            android:textSize="27sp"
+            android:fontFamily="@font/open_sans_semibold"/>
+
+        <TextView
+            android:id="@+id/resNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/regResText"
+            android:layout_marginTop="31dp"
+            android:text="@string/restaurant_name"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans"/>
+
+        <EditText
+            android:id="@+id/restaurantName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/resNameText"
+            android:layout_marginTop="5dp"
+            android:hint="@string/your_restaurant_name"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans_semibold"
+            android:background="@drawable/createres_background_field"
+            android:inputType="text"/>
+
+        <TextView
+            android:id="@+id/resCityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/restaurantName"
+            android:layout_marginTop="19dp"
+            android:text="@string/city"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans"/>
+
+        <EditText
+            android:id="@+id/restaurantCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/resCityText"
+            android:layout_marginTop="5dp"
+            android:hint="@string/restaurant_s_city"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans_semibold"
+            android:background="@drawable/createres_background_field"
+            android:inputType="text"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/restaurantCity"
+        android:layout_marginTop="11dp" />
+
+        <TextView
+            android:id="@+id/designationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/are_you_the_owner_or_the_manager_of_this_restaurant"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans"
+            android:layout_below="@+id/divider"
+            android:layout_marginTop="19dp"/>
+
+        <RadioGroup
+            android:id="@+id/designationRadioGrp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/designationText"
+            android:weightSum="2"
+            android:layout_marginTop="19dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/owner"
+                android:layout_weight="1"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/manager"
+                android:layout_weight="1"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/resPhoneNumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/restaurant_s_phone_number"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans"
+            android:layout_below="@id/designationRadioGrp"
+            android:layout_marginTop="19dp"/>
+
+        <EditText
+            android:id="@+id/restaurantPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/resPhoneNumText"
+            android:layout_marginTop="5dp"
+            android:hint="@string/phone_number"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans_semibold"
+            android:background="@drawable/createres_background_field"
+            android:inputType="phone"
+            android:maxLength="10"/>
+
+        <TextView
+            android:id="@+id/resAddressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/restaurant_s_address"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans"
+            android:layout_below="@id/restaurantPhoneNumber"
+            android:layout_marginTop="19dp"/>
+
+        <EditText
+            android:id="@+id/restaurantAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/resAddressText"
+            android:layout_marginTop="5dp"
+            android:hint="@string/address"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans_semibold"
+            android:background="@drawable/createres_background_field"
+            android:inputType="textPostalAddress"/>
+
+        <Button
+            android:id="@+id/saveResInfoBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/restaurantAddress"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/login_btn_background"
+            android:text="@string/save_submit"
+            android:textColor="@color/lightWhite"
+            android:textAllCaps="false"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textSize="18sp"/>
+
+    </RelativeLayout>
+
+

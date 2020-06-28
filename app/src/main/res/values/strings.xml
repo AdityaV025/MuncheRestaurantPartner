@@ -10,4 +10,17 @@
     <string name="termsandconditions">By Continuing. you agree to our terms of Service Privacy Policy and Content Policy</string>
     <string name="textOtpVer">OTP Verification</string>
     <string name="userNum">Enter the OTP sent to</string>
+    <string name="add_your_restaurant">Add Your Restaurant</string>
+    <string name="restaurant_name">Restaurant Name *</string>
+    <string name="your_restaurant_name">Your Restaurant Name</string>
+    <string name="city">City *</string>
+    <string name="restaurant_s_city">Restaurant\'s City</string>
+    <string name="are_you_the_owner_or_the_manager_of_this_restaurant">Are You The Owner or the Manager of this Restaurant ? *</string>
+    <string name="owner">Owner</string>
+    <string name="manager">Manager</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="restaurant_s_phone_number">Restaurant\'s Phone Number *</string>
+    <string name="address">Address</string>
+    <string name="restaurant_s_address">Restaurant\'s Address *</string>
+    <string name="save_submit"><![CDATA[Save & Submit]]></string>
 </resources>

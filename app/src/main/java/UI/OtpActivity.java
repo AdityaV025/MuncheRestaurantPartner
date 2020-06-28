@@ -96,7 +96,7 @@ public class OtpActivity extends AppCompatActivity {
                         FirebaseUser user = task.getResult().getUser();
                         String uid = user.getUid();
                         final FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        final DocumentReference docRef = db.collection("UserList").document(uid);
+                        final DocumentReference docRef = db.collection("RestaurantList").document(uid);
 
                         String deviceToken = FirebaseInstanceId.getInstance().getToken();
 
@@ -107,14 +107,13 @@ public class OtpActivity extends AppCompatActivity {
                             }else {
                                 Intent intent = new Intent(OtpActivity.this, CreateRestaurantActivity.class);
                                 intent.putExtra("PHONENUMBER", phoneNum);
-                                intent.putExtra("UID", uid);
+                                intent.putExtra("RUID", uid);
                                 intent.putExtra("TOKEN", deviceToken);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();
                             }
-
                         });
 
                         if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
