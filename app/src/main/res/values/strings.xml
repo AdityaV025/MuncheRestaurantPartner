@@ -23,4 +23,11 @@
     <string name="address">Address</string>
     <string name="restaurant_s_address">Restaurant\'s Address *</string>
     <string name="save_submit"><![CDATA[Save & Submit]]></string>
+    <string name="orders">Orders</string>
+    <string name="menu">Menu</string>
+    <string name="sales">Sales</string>
+    <string name="my_profile">My Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="log_out">Log Out</string>
 </resources>

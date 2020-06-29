@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_orders"
+        android:icon="@drawable/ic_baseline_orders_24"
+        android:title="@string/orders" />
+    <item
+        android:id="@+id/nav_menu"
+        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:title="@string/menu" />
+    <item
+        android:id="@+id/nav_sales"
+        android:icon="@drawable/ic_baseline_sales_24"
+        android:title="@string/sales" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/my_profile" />
+</menu>
