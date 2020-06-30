@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 29
@@ -27,6 +29,12 @@ android {
     }
 }
 
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+}
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -40,14 +48,23 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.4.3'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //External Libraries
     implementation 'com.github.aabhasr1:OtpView:v1.1.2' //OTP
     implementation 'com.hbb20:ccp:2.4.0' //Country Code Picker
     implementation 'com.google.android.material:material:1.1.0' //Material
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar' //Shimmer Loading
+    implementation 'com.github.bumptech.glide:glide:4.11.0' //Glide Image Loading
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0' //Annotation Processor
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar' //Switch Library
+    implementation 'com.github.dhaval2404:imagepicker:1.7.1' //ImagePicker
 
 }
 apply plugin: 'com.google.gms.google-services'

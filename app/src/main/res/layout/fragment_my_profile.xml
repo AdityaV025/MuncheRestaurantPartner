@@ -1,10 +1,26 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Fragments.MyProfileFragment"
-    android:padding="27dp">
+    tools:context="Fragments.MyProfileFragment">
+
+    <ImageView
+        android:id="@+id/restaurant_spotImage"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:src="@drawable/restaurant_image_placeholder"
+        android:scaleType="centerCrop"/>
+
+    <ImageButton
+        android:id="@+id/changeResSpotImageBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_change_restaurant_spotimage"
+        android:background="@color/transparent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="21dp"/>
 
     <TextView
         android:id="@+id/logOutText"
@@ -13,6 +29,7 @@
         android:text="@string/log_out"
         android:textSize="17sp"
         android:textColor="@color/colorAccent"
-        android:fontFamily="@font/open_sans"/>
+        android:fontFamily="@font/open_sans"
+        android:layout_below="@+id/restaurant_spotImage"/>
 
-</LinearLayout>
+</RelativeLayout>
