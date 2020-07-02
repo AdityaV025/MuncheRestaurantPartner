@@ -27,7 +27,11 @@
     <string name="menu">Menu</string>
     <string name="sales">Sales</string>
     <string name="my_profile">My Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="log_out">Log Out</string>
+    <string name="log_out">LOGOUT</string>
+    <string name="restaurant_name_text">Restaurant Name Text</string>
+    <string name="accepting_orders">Accepting Orders</string>
+    <string name="payment_settings">Payment Settings</string>
+    <string name="prep_time">Prep Time</string>
+    <string name="change_address">Change Address</string>
 </resources>

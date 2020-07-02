@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="UI.MyProfileActivity"
+    android:background="@color/white">
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/loadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AVLoadingIndicatorView"
+        android:visibility="visible"
+        app:indicatorName="BallPulseIndicator"
+        app:indicatorColor="@color/colorPrimaryDark"
+        android:layout_centerInParent="true"/>
+
+    <ImageView
+        android:id="@+id/restaurant_spotImage"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:scaleType="centerCrop"/>
+
+    <ImageButton
+        android:id="@+id/changeResSpotImageBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_change_restaurant_spotimage"
+        android:background="@color/transparent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="21dp"
+        android:layout_alignTop="@+id/restaurant_spotImage"/>
+
+    <TextView
+        android:id="@+id/restaurantNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/restaurant_spotImage"
+        android:padding="17dp"
+        android:text="@string/restaurant_name_text"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="19sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/restaurantNameText"/>
+
+    <TextView
+        android:id="@+id/acceptOrderSwitchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/accepting_orders"
+        android:padding="17dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:fontFamily="@font/open_sans"
+        android:layout_below="@+id/restaurantNameText"/>
+
+    <com.suke.widget.SwitchButton
+        android:id="@+id/acceptOrderSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/restaurantNameText"
+        android:layout_margin="17dp"/>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/acceptOrderSwitchText"/>
+
+    <TextView
+        android:id="@+id/paymentSettingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider2"
+        android:text="@string/payment_settings"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="17sp"
+        android:drawableStart="@drawable/payment_icon"
+        android:drawablePadding="9dp"/>
+
+    <TextView
+        android:id="@+id/prepTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prep_time"
+        android:layout_below="@+id/paymentSettingText"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="21dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="17sp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:drawableStart="@drawable/preptime_icon"
+        android:drawablePadding="9dp"/>
+
+    <TextView
+        android:id="@+id/changeAddressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_address"
+        android:layout_below="@+id/prepTimeText"
+        android:layout_marginTop="21dp"
+        android:layout_marginStart="17dp"
+        android:textSize="17sp"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="@font/open_sans_semibold"
+        android:drawableStart="@drawable/address_icon"
+        android:drawablePadding="9dp"/>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/changeAddressText"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/logOutText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/log_out"
+        android:textSize="17sp"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="@font/open_sans_bold"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="17dp"
+        android:drawableEnd="@drawable/logout_icon"/>
+
+</RelativeLayout>
