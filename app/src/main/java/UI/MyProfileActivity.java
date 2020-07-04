@@ -61,6 +61,8 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     private AVLoadingIndicatorView mLoadingView;
     private ProgressDialog progressDialog;
 
+    //TODO: Implement ChiliPhotoPicker in MyProfileFragment
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
