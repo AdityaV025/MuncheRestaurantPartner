@@ -9,22 +9,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.muncherestaurantpartner.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
-public class CreateNewMenuFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class CreateNewMenuFragment extends Fragment implements View.OnClickListener{
 
     private View view;
-    private Spinner mCategorySpinner;
+    private MaterialSpinner mCategorySpinner, mFoodVegOrNotSpinner;
+    private EditText mMenuItemName, mMenuItemPrice, mMenuItemDesc;
+    private Button mSaveMenuItemInfo;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mCurrentUser;
+    private String Ruid, mMenuCategory, mItemName, mItemVegOrNot, mItemPrice, mItemDesc;
+    private FirebaseFirestore db;
+    private DocumentReference mMenuRef;
 
     public CreateNewMenuFragment() {
         // Required empty public constructor
@@ -42,33 +56,65 @@ public class CreateNewMenuFragment extends Fragment implements AdapterView.OnIte
     }
 
     private void init() {
+
+        mAuth = FirebaseAuth.getInstance();
+        mCurrentUser = mAuth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
+        assert mCurrentUser != null;
+        Ruid = mCurrentUser.getUid();
+
         mCategorySpinner = view.findViewById(R.id.chooseCategorySpinner);
-        String[] mCategoryArray = new String[] {
-          "Select Category","Appetizers","Entrees","Starters","Salads","Main Course","Desserts","Ice Cream","Biryani",
-                "Parathas","Pizzas","Burgers","Sandwiches","Drinks","Beverages","Alcoholics","Sushi",
-                "Pasta","Cakes","Pastries","South Indian","North Indian","Thali","Dosas","Chinese",
-                "Soups","Recommends"
-        };
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Objects.requireNonNull(getActivity()),
-                android.R.layout.simple_spinner_item, mCategoryArray);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mCategorySpinner.setAdapter(adapter);
-        mCategorySpinner.setOnItemSelectedListener(this);
+        mFoodVegOrNotSpinner = view.findViewById(R.id.foodVegOrNotSpinner);
+        mSaveMenuItemInfo = view.findViewById(R.id.saveItemInfoBtn);
+        mMenuItemName = view.findViewById(R.id.newMenuItemEditText);
+        mMenuItemPrice = view.findViewById(R.id.menuItemPrice);
+        mMenuItemDesc = view.findViewById(R.id.menuItemDescription);
+        mCategorySpinner.setItems("Select Category","Appetizers","Entrees","Starters","Salads",
+                "Main Course","Desserts","Ice Cream","Biryani","Parathas","Pizzas","Burgers",
+                "Sandwiches","Drinks","Beverages","Alcoholics","Sushi", "Pasta","Cakes","Pastries",
+                "South Indian","North Indian","Thali","Dosas","Chinese", "Soups","Recommends");
+        mCategorySpinner.setOnItemSelectedListener((view, position, id, item) -> {
+            if (!item.toString().equals("Select Category")){
+                mMenuCategory = item.toString();
+            }
+        });
+        mFoodVegOrNotSpinner.setItems("Choose","Veg", "Non Veg");
+        mFoodVegOrNotSpinner.setOnItemSelectedListener((view, position, id, item) -> {
+            if (!item.toString().equals("Choose")){
+                mItemVegOrNot = item.toString();
+            }
+        });
+        mSaveMenuItemInfo.setOnClickListener(this);
 
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+    public void onClick(View view) {
 
-        if (!mCategorySpinner.getSelectedItem().toString().equals("Select Category")){
-            Toast.makeText(requireActivity(), mCategorySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+        if (view.getId() == R.id.saveItemInfoBtn){
+
+            mItemName = mMenuItemName.getText().toString();
+            mItemPrice = mMenuItemPrice.getText().toString();
+            mItemDesc = mMenuItemDesc.getText().toString();
+
+            mMenuRef = db.collection("Menu")
+                    .document(Ruid)
+                    .collection(mMenuCategory)
+                    .document(mItemName);
+
+            Map<String, String> menuItemMap = new HashMap<>();
+            menuItemMap.put("name", mItemName);
+            menuItemMap.put("price", mItemPrice);
+            menuItemMap.put("category", mMenuCategory);
+            menuItemMap.put("specification", mItemVegOrNot);
+            menuItemMap.put("description", mItemDesc);
+            menuItemMap.put("is_active", "yes");
+
+            mMenuRef.set(menuItemMap).addOnSuccessListener(aVoid -> {
+                Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_LONG).show();
+            });
+
         }
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }

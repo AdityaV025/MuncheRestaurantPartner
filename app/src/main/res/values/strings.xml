@@ -37,4 +37,8 @@
     <string name="create_menu">Create Your Restaurant Menu</string>
     <string name="create">Create</string>
     <string name="choose_category">Choose Category</string>
+    <string name="create_a_new_menu_item">Create a New Menu Item</string>
+    <string name="menu_item_price">Item Price *</string>
+    <string name="item_specification">Item Specification</string>
+    <string name="write_a_short_description">Write a short Description *</string>
 </resources>
