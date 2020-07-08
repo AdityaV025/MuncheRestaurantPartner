@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
@@ -38,7 +39,7 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
     private FirebaseUser mCurrentUser;
     private String Ruid, mMenuCategory, mItemName, mItemVegOrNot, mItemPrice, mItemDesc;
     private FirebaseFirestore db;
-    private DocumentReference mMenuRef;
+    private DocumentReference mMenuRef, mRestRef;
 
     public CreateNewMenuFragment() {
         // Required empty public constructor
@@ -101,6 +102,9 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
                     .document(Ruid)
                     .collection(mMenuCategory)
                     .document(mItemName);
+
+            mRestRef = db.collection("RestaurantList").document(Ruid);
+            mRestRef.update("Categories", FieldValue.arrayUnion(mMenuCategory));
 
             Map<String, String> menuItemMap = new HashMap<>();
             menuItemMap.put("name", mItemName);
