@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "141548708414-qc88dgtuaflkrcgpjilubiu9gbem19n1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.munche",
+            "certificate_hash": "07fb6238aaf24a2f06ed0360b6c1b599a854853f"
+          }
+        },
+        {
           "client_id": "141548708414-48ddo1352gs2184gn7aq47gt0pc5opfs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -51,6 +59,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "141548708414-ut7lqiibtnakgvjnqattgk44q8q39llj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.muncherestaurantpartner",
+            "certificate_hash": "07fb6238aaf24a2f06ed0360b6c1b599a854853f"
+          }
+        },
         {
           "client_id": "141548708414-h2pgqtjvq0a9p6udct18qaqrurfcpnr1.apps.googleusercontent.com",
           "client_type": 1,

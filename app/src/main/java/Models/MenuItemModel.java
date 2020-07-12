@@ -1,39 +1,53 @@
 package Models;
 
+
 public class MenuItemModel {
 
-    private String ItemName;
-    private String ItemPrice;
-    private String ItemSpecification;
+    private String name;
+    private String price;
+    private String specification;
+    private String category;
 
-    public MenuItemModel(String itemName, String itemPrice, String itemSpecification) {
-        ItemName = itemName;
-        ItemPrice = itemPrice;
-        ItemSpecification = itemSpecification;
+    public MenuItemModel() {
     }
 
-    public String getItemName() {
-        return ItemName;
+    public MenuItemModel(String name, String price, String specification, String category) {
+        this.name = name;
+        this.price = price;
+        this.specification = specification;
+        this.category = category;
     }
 
-    public void setItemName(String itemName) {
-        ItemName = itemName;
+    public String getName() {
+        return name;
     }
 
-    public String getItemPrice() {
-        return ItemPrice;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setItemPrice(String itemPrice) {
-        ItemPrice = itemPrice;
+    public String getPrice() {
+        return price;
     }
 
-    public String getItemSpecification() {
-        return ItemSpecification;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public void setItemSpecification(String itemSpecification) {
-        ItemSpecification = itemSpecification;
+    public String getSpecification() {
+        return specification;
+    }
+
+    public void setSpecification(String specification) {
+        this.specification = specification;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 }

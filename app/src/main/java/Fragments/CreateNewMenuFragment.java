@@ -100,11 +100,11 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
 
             mMenuRef = db.collection("Menu")
                     .document(Ruid)
-                    .collection(mMenuCategory)
+                    .collection("MenuItems")
                     .document(mItemName);
 
-            mRestRef = db.collection("RestaurantList").document(Ruid);
-            mRestRef.update("Categories", FieldValue.arrayUnion(mMenuCategory));
+//            mRestRef = db.collection("RestaurantList").document(Ruid);
+//            mRestRef.update("Categories", FieldValue.arrayUnion(mMenuCategory));
 
             Map<String, String> menuItemMap = new HashMap<>();
             menuItemMap.put("name", mItemName);

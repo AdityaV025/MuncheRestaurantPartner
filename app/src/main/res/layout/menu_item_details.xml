@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="120dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="17dp">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/foodMark"
-        android:layout_width="20dp"
-        android:layout_height="20dp"/>
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="19dp"/>
 
     <TextView
         android:id="@+id/itemName"
@@ -18,32 +19,47 @@
         android:layout_marginStart="20dp"
         android:textColor="@color/colorAccent"
         android:fontFamily="@font/open_sans_semibold"
-        android:textSize="17sp"/>
+        android:textSize="15sp"
+        android:layout_marginTop="17dp"/>
+
+    <TextView
+        android:id="@+id/itemCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/foodMark"
+        android:layout_below="@+id/itemName"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/open_sans_light"
+        android:textSize="12sp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/gray"/>
 
     <TextView
         android:id="@+id/itemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/itemName"
+        android:layout_below="@+id/itemCategory"
         android:layout_toEndOf="@+id/foodMark"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="13dp"
         android:fontFamily="@font/open_sans"
         android:textColor="@color/gray"
-        android:textSize="16sp"/>
+        android:textSize="12sp"/>
 
     <Switch
         android:id="@+id/itemActiveSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"/>
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="19dp"/>
 
     <View
         android:id="@+id/menuItemDivider"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
-        android:layout_alignParentBottom="true"/>
+        android:layout_below="@+id/itemPrice"
+        android:layout_marginTop="9dp"/>
 
 </RelativeLayout>
