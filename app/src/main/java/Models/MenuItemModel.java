@@ -6,15 +6,17 @@ public class MenuItemModel {
     private String name;
     private String price;
     private String specification;
+    private String is_active;
     private String category;
 
     public MenuItemModel() {
     }
 
-    public MenuItemModel(String name, String price, String specification, String category) {
+    public MenuItemModel(String name, String price, String specification, String is_active, String category) {
         this.name = name;
         this.price = price;
         this.specification = specification;
+        this.is_active = is_active;
         this.category = category;
     }
 
@@ -40,6 +42,14 @@ public class MenuItemModel {
 
     public void setSpecification(String specification) {
         this.specification = specification;
+    }
+
+    public String getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(String is_active) {
+        this.is_active = is_active;
     }
 
     public String getCategory() {

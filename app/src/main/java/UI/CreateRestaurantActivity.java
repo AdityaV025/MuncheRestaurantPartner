@@ -24,10 +24,10 @@ import java.util.Map;
 
 public class CreateRestaurantActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText mRestaurantName,mRestaurantPhoneNumber, mRestaurantCity, mRestaurantAddress;
+    private EditText mRestaurantName,mRestaurantPhoneNumber, mRestaurantCity, mRestaurantAddress, mRestaurantAveragePrice;
     private Button mSaveResInfoBtn;
     private RadioButton mOwnerRadioBtn, mManagerRadioBtn;
-    private String resName,resNum,resCity,resAddress,checkedDesignation,RestaurantUid,Token,UserPhoneNumber;
+    private String resName,resNum,resCity,resAddress,checkedDesignation,RestaurantUid,Token,UserPhoneNumber,restaurantAveragePrice;
     private Double mLatitude, mLongitude;
     private List<Address> address;
     private Geocoder geocoder;
@@ -49,6 +49,7 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
         mRestaurantCity = findViewById(R.id.restaurantCity);
         mRestaurantPhoneNumber = findViewById(R.id.restaurantPhoneNumber);
         mRestaurantAddress = findViewById(R.id.restaurantAddress);
+        mRestaurantAveragePrice = findViewById(R.id.restaurantAveragePriceEditText);
         mSaveResInfoBtn = findViewById(R.id.saveResInfoBtn);
         mOwnerRadioBtn = findViewById(R.id.ownerRadBtn);
         mManagerRadioBtn = findViewById(R.id.managerRadBtn);
@@ -64,7 +65,8 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
         if (mRestaurantName.getText().toString().isEmpty()
                 || mRestaurantCity.getText().toString().isEmpty()
                 || mRestaurantPhoneNumber.getText().toString().isEmpty()
-                || mRestaurantAddress.getText().toString().isEmpty()){
+                || mRestaurantAddress.getText().toString().isEmpty()
+                || mRestaurantAveragePrice.getText().toString().isEmpty()){
 
             Toast.makeText(this, "Please Enter Correct Information", Toast.LENGTH_LONG).show();
         }else {
@@ -72,6 +74,7 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
             resCity  = mRestaurantCity.getText().toString();
             resNum =  mRestaurantPhoneNumber.getText().toString();
             resAddress = mRestaurantAddress.getText().toString();
+            restaurantAveragePrice = mRestaurantAveragePrice.getText().toString();
 
             try {
                 address = geocoder.getFromLocationName(resAddress,5);
@@ -106,6 +109,7 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
             RestaurantData.put("latitude", mLatitude);
             RestaurantData.put("longitude", mLongitude);
             RestaurantData.put("user_role", checkedDesignation);
+            RestaurantData.put("average_price", restaurantAveragePrice);
             RestaurantData.put("restaurant_spotimage", "empty");
 
             db.collection("RestaurantList").document(RestaurantUid).set(RestaurantData)

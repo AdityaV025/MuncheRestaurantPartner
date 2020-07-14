@@ -23,17 +23,12 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import Models.MenuItemModel;
@@ -93,6 +88,12 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
                 holder.mItemName.setText(model.getName());
                 holder.mItemCategory.setText(model.getCategory());
+                String isActive = model.getIs_active();
+                if (isActive.equals("yes")){
+                    holder.isActiveSwitch.setChecked(true);
+                }else {
+                    holder.isActiveSwitch.setChecked(false);
+                }
                 String specImage = String.valueOf(model.getSpecification());
                 if (specImage.equals("Veg")){
                     Glide.with(Objects.requireNonNull(requireActivity()))

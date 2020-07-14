@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,6 +8,10 @@
     android:layout_height="match_parent"
     tools:context="UI.CreateRestaurantActivity"
     android:padding="18dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/regResText"
@@ -65,13 +70,13 @@
             android:background="@drawable/createres_background_field"
             android:inputType="text"/>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray"
-        android:layout_below="@+id/restaurantCity"
-        android:layout_marginTop="11dp" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/restaurantCity"
+            android:layout_marginTop="11dp" />
 
         <TextView
             android:id="@+id/designationText"
@@ -162,11 +167,35 @@
             android:background="@drawable/createres_background_field"
             android:inputType="textPostalAddress"/>
 
+        <TextView
+            android:id="@+id/resAveragePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/average_price_per_person"
+            android:layout_below="@+id/restaurantAddress"
+            android:layout_marginTop="19dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans"/>
+
+        <EditText
+            android:id="@+id/restaurantAveragePriceEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/resAveragePrice"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/createres_background_field"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:inputType="number"
+            android:hint="Average Price Per Person"/>
+
         <Button
             android:id="@+id/saveResInfoBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/restaurantAddress"
+            android:layout_below="@id/restaurantAveragePriceEditText"
             android:layout_marginTop="30dp"
             android:background="@drawable/login_btn_background"
             android:text="@string/save_submit"
@@ -176,5 +205,9 @@
             android:textSize="18sp"/>
 
     </RelativeLayout>
+
+</ScrollView>
+
+
 
 

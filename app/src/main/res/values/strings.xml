@@ -41,4 +41,5 @@
     <string name="menu_item_price">Item Price *</string>
     <string name="item_specification">Item Specification</string>
     <string name="write_a_short_description">Write a short Description *</string>
+    <string name="average_price_per_person">Average Price Per Person *</string>
 </resources>

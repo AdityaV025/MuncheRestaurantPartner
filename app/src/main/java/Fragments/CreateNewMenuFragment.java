@@ -3,6 +3,8 @@ package Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +41,7 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
     private FirebaseUser mCurrentUser;
     private String Ruid, mMenuCategory, mItemName, mItemVegOrNot, mItemPrice, mItemDesc;
     private FirebaseFirestore db;
-    private DocumentReference mMenuRef, mRestRef;
+    private DocumentReference mMenuRef;
 
     public CreateNewMenuFragment() {
         // Required empty public constructor
@@ -79,7 +81,7 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
                 mMenuCategory = item.toString();
             }
         });
-        mFoodVegOrNotSpinner.setItems("Choose","Veg", "Non Veg");
+        mFoodVegOrNotSpinner.setItems("Choose","Veg", "NonVeg");
         mFoodVegOrNotSpinner.setOnItemSelectedListener((view, position, id, item) -> {
             if (!item.toString().equals("Choose")){
                 mItemVegOrNot = item.toString();
@@ -116,6 +118,12 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
 
             mMenuRef.set(menuItemMap).addOnSuccessListener(aVoid -> {
                 Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_LONG).show();
+                Fragment fragment = new MenuFragment();
+                FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             });
 
         }
