@@ -109,6 +109,7 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
             RestaurantData.put("user_role", checkedDesignation);
             RestaurantData.put("average_price", restaurantAveragePrice);
             RestaurantData.put("restaurant_spotimage", "empty");
+            RestaurantData.put("restaurant_open", "yes");
 
             db.collection("RestaurantList").document(RestaurantUid).set(RestaurantData)
                     .addOnSuccessListener(aVoid -> {

@@ -1,33 +1,23 @@
 package UI;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.muncherestaurantpartner.R;
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -36,18 +26,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.suke.widget.SwitchButton;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import Fragments.OrdersFragment;
-
 public class MyProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView mLogOutText,mRestaurantNameText;
+    private TextView mRestaurantNameText;
     private FirebaseAuth mAuth;
     private ImageView mRestaurantSpotImage;
     private ImageButton mChangeRestaurantSpotImageBtn;
@@ -60,6 +48,8 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     private DocumentReference mRestRef;
     private AVLoadingIndicatorView mLoadingView;
     private ProgressDialog progressDialog;
+    private SwitchButton mSwitchBtn;
+    private LinearLayout mLogOut, mPaymentSettings;
 
     //TODO: Implement ChiliPhotoPicker in MyProfileFragment
 
@@ -67,28 +57,23 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
-        changestatusbarcolor();
         init();
         mLoadingView.show();
         loadResSpotImage();
-        mLogOutText.setOnClickListener(this);
+        mLogOut.setOnClickListener(this);
+        mPaymentSettings.setOnClickListener(this);
         mChangeRestaurantSpotImageBtn.setOnClickListener(this);
 
     }
 
-    private void changestatusbarcolor() {
-        Window window = this.getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.white));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
-    }
-
     private void init() {
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        );
         mLoadingView = findViewById(R.id.loadingView);
-        mLogOutText = findViewById(R.id.logOutText);
+        mLogOut = findViewById(R.id.logOutContainer);
+        mPaymentSettings = findViewById(R.id.paymentSettingContainer);
         mRestaurantNameText = findViewById(R.id.restaurantNameText);
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
@@ -99,6 +84,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         mRestaurantImageRef = FirebaseStorage.getInstance().getReference();
         restaurantDB  = FirebaseFirestore.getInstance();
         mRestRef = restaurantDB.collection("RestaurantList").document(ruid);
+        mSwitchBtn = findViewById(R.id.acceptOrderSwitch);
         progressDialog = new ProgressDialog(this);
     }
 
@@ -109,6 +95,11 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
                 assert documentSnapshot != null;
                 String validateImage = String.valueOf(documentSnapshot.get("restaurant_spotimage"));
                 String resName = String.valueOf(documentSnapshot.get("restaurant_name"));
+                String res_status = String.valueOf(documentSnapshot.get("restaurant_open"));
+
+                if (!res_status.equals("yes")){
+                    mSwitchBtn.setChecked(false);
+                }
                 mRestaurantNameText.setText(resName);
                 if (validateImage.equals("empty")){
                     Glide.with(this)
@@ -130,7 +121,11 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()){
 
-            case R.id.logOutText:
+            case R.id.changeResSpotImageBtn:
+                setImage();
+                break;
+
+            case R.id.logOutContainer:
                 new AlertDialog.Builder(Objects.requireNonNull(this))
                         .setMessage("Are you sure you want to log out ?")
                         .setPositiveButton("Log Out", (dialog, which) -> {
@@ -141,8 +136,9 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
                         .show();
                 break;
 
-            case R.id.changeResSpotImageBtn:
-                setImage();
+            case R.id.paymentSettingContainer:
+                Intent intent = new Intent(this, PaymentSettingsActivity.class);
+                startActivity(intent);
                 break;
 
         }
@@ -217,17 +213,6 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
 
         }
     }
-
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.fragmentContainer, new OrdersFragment())
-//                    .commit();
-//            return true;
-//        }
-//        return super.onKeyDown(keyCode, event);
-//    }
 
     private void sendUserToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);

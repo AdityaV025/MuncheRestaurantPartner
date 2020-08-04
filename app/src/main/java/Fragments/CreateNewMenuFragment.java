@@ -30,6 +30,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class CreateNewMenuFragment extends Fragment implements View.OnClickListener{
 
@@ -107,7 +108,7 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
 
 //            mRestRef = db.collection("RestaurantList").document(Ruid);
 //            mRestRef.update("Categories", FieldValue.arrayUnion(mMenuCategory));
-
+            String menuItemId = String.valueOf(UUID.randomUUID()).replace("-","");
             Map<String, String> menuItemMap = new HashMap<>();
             menuItemMap.put("name", mItemName);
             menuItemMap.put("price", mItemPrice);
@@ -115,6 +116,7 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
             menuItemMap.put("specification", mItemVegOrNot);
             menuItemMap.put("description", mItemDesc);
             menuItemMap.put("is_active", "yes");
+            menuItemMap.put("menuUid" , menuItemId);
 
             mMenuRef.set(menuItemMap).addOnSuccessListener(aVoid -> {
                 Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_LONG).show();

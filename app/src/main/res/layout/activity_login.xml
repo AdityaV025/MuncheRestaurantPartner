@@ -91,20 +91,21 @@
             android:id="@+id/or"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_below="@+id/sendOtpBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
             android:fontFamily="@font/open_sans"
             android:text="@string/or"
             android:textColor="@color/gray"
-            android:textSize="15sp"
-            android:layout_below="@+id/sendOtpBtn"
-            android:layout_centerHorizontal="true"/>
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/facebookLoginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/or"
-            android:layout_marginTop="20dp"
             android:background="@drawable/other_login_btn_background"
             android:drawableLeft="@drawable/fb_logo"
             android:drawablePadding="6dp"

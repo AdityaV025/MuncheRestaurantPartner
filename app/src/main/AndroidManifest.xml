@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="UI.PaymentSettingsActivity"></activity>
         <activity android:name="UI.MyProfileActivity" />
         <activity android:name="UI.CreateRestaurantActivity" />
         <activity android:name="UI.OtpActivity" />

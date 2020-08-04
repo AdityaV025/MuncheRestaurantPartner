@@ -32,7 +32,7 @@
     <string name="restaurant_name_text">Restaurant Name Text</string>
     <string name="accepting_orders">Accepting Orders</string>
     <string name="payment_settings">Payment Settings</string>
-    <string name="prep_time">Prep Time</string>
+    <string name="prep_time">Item Prep Time</string>
     <string name="change_address">Change Address</string>
     <string name="create_menu">Create Your Restaurant Menu</string>
     <string name="create">Create</string>

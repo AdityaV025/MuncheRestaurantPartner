@@ -1,143 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="UI.MyProfileActivity"
-    android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/replaceContainer1">
 
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/loadingView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/AVLoadingIndicatorView"
-        android:visibility="visible"
-        app:indicatorName="BallPulseIndicator"
-        app:indicatorColor="@color/colorPrimaryDark"
-        android:layout_centerInParent="true"/>
-
-    <ImageView
-        android:id="@+id/restaurant_spotImage"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="225dp"
-        android:scaleType="centerCrop"/>
+        android:layout_height="match_parent"
+        android:background="@color/blue_grey">
+        <ImageView
+            android:id="@+id/restaurant_spotImage"
+            android:layout_width="match_parent"
+            android:layout_height="225dp"
+            android:scaleType="centerCrop"/>
 
-    <ImageButton
-        android:id="@+id/changeResSpotImageBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_change_restaurant_spotimage"
-        android:background="@color/transparent"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="21dp"
-        android:layout_alignTop="@+id/restaurant_spotImage"/>
+        <ImageButton
+            android:id="@+id/changeResSpotImageBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_change_restaurant_spotimage"
+            android:background="@color/transparent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="31dp"
+            android:layout_alignTop="@+id/restaurant_spotImage"/>
 
-    <TextView
-        android:id="@+id/restaurantNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/restaurant_spotImage"
-        android:padding="17dp"
-        android:text="@string/restaurant_name_text"
-        android:textColor="@color/colorAccent"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textSize="19sp"/>
+        <LinearLayout
+            android:id="@+id/resNameContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/restaurant_spotImage"
+            android:background="@color/white">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray"
-        android:layout_below="@+id/restaurantNameText"/>
+            <TextView
+                android:id="@+id/restaurantNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="17dp"
+                android:text="@string/restaurant_name_text"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textSize="19sp"/>
 
-    <TextView
-        android:id="@+id/acceptOrderSwitchText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/accepting_orders"
-        android:padding="17dp"
-        android:textColor="@color/colorAccent"
-        android:textSize="20sp"
-        android:fontFamily="@font/open_sans"
-        android:layout_below="@+id/restaurantNameText"/>
+        </LinearLayout>
 
-    <com.suke.widget.SwitchButton
-        android:id="@+id/acceptOrderSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/restaurantNameText"
-        android:layout_margin="17dp"/>
+        <View
+            android:id="@+id/dividerOne"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/resNameContainer"/>
 
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray"
-        android:layout_below="@+id/acceptOrderSwitchText"/>
+        <LinearLayout
+            android:id="@+id/resStatusContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_below="@+id/dividerOne"
+            android:background="@color/white">
 
-    <TextView
-        android:id="@+id/paymentSettingText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/divider2"
-        android:text="@string/payment_settings"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/colorAccent"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textSize="17sp"
-        android:drawableStart="@drawable/payment_icon"
-        android:drawablePadding="9dp"/>
+            <TextView
+                android:id="@+id/acceptOrderSwitchText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/accepting_orders"
+                android:padding="17dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:fontFamily="@font/open_sans"
+                android:layout_weight="9"
+                android:layout_gravity="center_vertical"/>
 
-    <TextView
-        android:id="@+id/prepTimeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prep_time"
-        android:layout_below="@+id/paymentSettingText"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="21dp"
-        android:textColor="@color/colorAccent"
-        android:textSize="17sp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:drawableStart="@drawable/preptime_icon"
-        android:drawablePadding="9dp"/>
+            <com.suke.widget.SwitchButton
+                android:id="@+id/acceptOrderSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:sb_checked="true"
+                android:layout_gravity="center_vertical" />
 
-    <TextView
-        android:id="@+id/changeAddressText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/change_address"
-        android:layout_below="@+id/prepTimeText"
-        android:layout_marginTop="21dp"
-        android:layout_marginStart="17dp"
-        android:textSize="17sp"
-        android:textColor="@color/colorAccent"
-        android:fontFamily="@font/open_sans_semibold"
-        android:drawableStart="@drawable/address_icon"
-        android:drawablePadding="9dp"/>
+        </LinearLayout>
 
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray"
-        android:layout_below="@+id/changeAddressText"
-        android:layout_marginTop="15dp"/>
+        <LinearLayout
+            android:id="@+id/paymentSettingContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/resStatusContainer"
+            android:layout_marginTop="17dp"
+            android:background="@color/white"
+            android:padding="11dp"
+            android:weightSum="8">
 
-    <TextView
-        android:id="@+id/logOutText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/log_out"
-        android:textSize="17sp"
-        android:textColor="@color/colorAccent"
-        android:fontFamily="@font/open_sans_bold"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="17dp"
-        android:drawableEnd="@drawable/logout_icon"/>
+            <ImageView
+                android:id="@+id/paymentIcon"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/payment_settings_icon"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/paymentSettingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/payment_settings"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/open_sans"
+                android:textSize="17sp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="6"
+                android:layout_marginStart="15dp"/>
+
+            <ImageView
+                android:id="@+id/backArrow1"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/forward_arrow"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/dividerTwo"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/paymentSettingContainer"/>
+
+        <LinearLayout
+            android:id="@+id/prepTimeContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/dividerTwo"
+            android:background="@color/white"
+            android:padding="11dp"
+            android:weightSum="8">
+
+            <ImageView
+                android:id="@+id/prepTime"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/prep_time_icon"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/prepTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prep_time"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/open_sans"
+                android:textSize="17sp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="6"
+                android:layout_marginStart="15dp"/>
+
+            <ImageView
+                android:id="@+id/backArrow2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/forward_arrow"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/dividerThree"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/prepTimeContainer"/>
+
+        <LinearLayout
+            android:id="@+id/changeAddressContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/dividerThree"
+            android:background="@color/white"
+            android:padding="11dp"
+            android:weightSum="8">
+
+            <ImageView
+                android:id="@+id/changeAddress"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/change_address_icon"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/changeAddressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change_address"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/open_sans"
+                android:textSize="17sp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="6"
+                android:layout_marginStart="15dp"/>
+
+            <ImageView
+                android:id="@+id/backArrow3"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/forward_arrow"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/versionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/changeAddressContainer"
+            android:padding="17dp"
+            android:text="Version: 1.0"
+            android:fontFamily="@font/open_sans"/>
+
+        <LinearLayout
+            android:id="@+id/logOutContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="9dp"
+            android:background="@color/white"
+            android:weightSum="9"
+            android:layout_marginBottom="48dp"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/logOutText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/log_out"
+                android:textSize="17sp"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/open_sans_bold"
+                android:layout_weight="8"/>
+
+            <ImageView
+                android:id="@+id/logOutIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logout_icon"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/loadingView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AVLoadingIndicatorView"
+            android:visibility="visible"
+            app:indicatorName="BallPulseIndicator"
+            app:indicatorColor="@color/colorPrimaryDark"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+</FrameLayout>
+

@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         init();
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
     }
 
     private void init() {
@@ -53,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_profile:
                         Intent intent = new Intent(this, MyProfileActivity.class);
                         startActivity(intent);
+                        this.overridePendingTransition(0,0);
                         break;
                 }
                 if (selectedFragment != null){
