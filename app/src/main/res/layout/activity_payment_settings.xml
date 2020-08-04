@@ -1,9 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="UI.PaymentSettingsActivity">
+    tools:context="UI.PaymentSettingsActivity"
+    android:background="@color/blue_grey">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/custom_toolbar"
+        android:id="@+id/paymentToolBar"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/paymentToolBar"
+        android:layout_marginTop="17dp"
+        android:padding="17dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/selectMethodText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select The Payment Methods"
+            android:fontFamily="@font/open_sans"
+            android:textSize="21sp"
+            android:textColor="@color/colorAccent"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:layout_below="@+id/selectMethodText"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/codText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cash On Delivery"
+            android:layout_below="@+id/divider"
+            android:layout_marginTop="21dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="@color/gray"
+            android:textSize="19sp"/>
+
+        <CheckBox
+            android:id="@+id/codCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider"
+            android:layout_marginTop="21dp"
+            android:layout_alignParentEnd="true"/>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/codText"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/creditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider2"
+            android:text="Credit/Debit/Paytm"
+            android:layout_marginTop="20dp"
+            android:textSize="19sp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="@color/gray"/>
+
+        <CheckBox
+            android:id="@+id/creditCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider2"
+            android:layout_marginTop="21dp"
+            android:layout_alignParentEnd="true"/>
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/creditText"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/upiText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider3"
+            android:text="UPI"
+            android:layout_marginTop="20dp"
+            android:textSize="19sp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="@color/gray"/>
+
+        <CheckBox
+            android:id="@+id/upiCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider3"
+            android:layout_marginTop="21dp"
+            android:layout_alignParentEnd="true"/>
+
+        <TextView
+            android:id="@+id/upiIdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:text="Please enter your UPI ID"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"
+            android:layout_below="@+id/upiText"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/upiIdEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/create_menu_background"
+            android:layout_marginTop="7dp"
+            android:hint="Ex: 1234567890@paytm"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@+id/upiIdText"
+            android:visibility="gone"
+            android:maxLines="1"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/savePaymentInfoBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:text="Save Payment Settings"
+        android:textColor="@color/white"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textAllCaps="false"
+        android:textSize="17sp"/>
+
+</RelativeLayout>
