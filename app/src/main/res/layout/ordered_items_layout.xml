@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="7dp">
+
+    <TextView
+        android:id="@+id/orderId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ORDER ID: 78945645612"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/gray"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/deliveryAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orderId"
+        android:text="F-238, Sector-40, Noida"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/colorAccent"
+        android:textSize="17sp"
+        android:layout_marginTop="3dp"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/deliveryAddress"
+        android:layout_marginTop="3dp"/>
+
+    <TextView
+        android:id="@+id/orderedItems"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 x Aloo Tikki"
+        android:layout_below="@+id/divider"
+        android:layout_marginTop="17dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="19sp"
+        android:textColor="@color/colorAccent"/>
+
+    <LinearLayout
+        android:id="@+id/actionContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_below="@+id/orderedItems"
+        android:layout_marginTop="17dp">
+
+        <Button
+            android:id="@+id/declineBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Decline"
+            android:fontFamily="@font/open_sans_semibold"
+            android:background="@null"
+            android:textColor="#e3404f"/>
+
+        <Button
+            android:id="@+id/acceptBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Accept Order"
+            android:fontFamily="@font/open_sans_semibold"
+            android:background="#69BE37"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

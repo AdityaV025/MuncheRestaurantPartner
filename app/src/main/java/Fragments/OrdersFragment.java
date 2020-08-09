@@ -10,11 +10,12 @@ import android.view.ViewGroup;
 
 import com.example.muncherestaurantpartner.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class OrdersFragment extends Fragment {
 
-    private ShimmerFrameLayout mShimmerFrameLayout;
     private View view;
+    private FirebaseFirestore db;
 
     public OrdersFragment() {
         // Required empty public constructor
@@ -31,21 +32,13 @@ public class OrdersFragment extends Fragment {
     }
 
     private void init() {
-//        mShimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
-//        mShimmerFrameLayout.startShimmerAnimation();
+        db = FirebaseFirestore.getInstance();
     }
 
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        mShimmerFrameLayout.stopShimmerAnimation();
-//        mShimmerFrameLayout.setVisibility(View.GONE);
-//    }
-//
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        mShimmerFrameLayout.stopShimmerAnimation();
-//        mShimmerFrameLayout.setVisibility(View.GONE);
-//    }
+    private void fetchLiveOrders() {
+
+
+
+    }
+
 }
