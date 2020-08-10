@@ -62,15 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             };
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        assert data != null;
-//        Log.d("GOT_IMAGE", Objects.requireNonNull(data.getData()).toString());
-//
-//    }
-
     private void sendUserToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
