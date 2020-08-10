@@ -4,75 +4,152 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:layout_marginBottom="7dp">
+    android:layout_marginBottom="7dp"
+    android:padding="11dp">
 
     <TextView
         android:id="@+id/orderId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ORDER ID: 78945645612"
+        android:text="ORDER ID: 789465654"
         android:fontFamily="@font/open_sans"
         android:textColor="@color/gray"
-        android:textSize="17sp"/>
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/orderTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="6:30 PM"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="14sp"
+        android:textColor="@color/colorAccent"/>
 
     <TextView
         android:id="@+id/deliveryAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/orderId"
-        android:text="F-238, Sector-40, Noida"
-        android:fontFamily="@font/open_sans"
-        android:textColor="@color/colorAccent"
+        android:text="Address: F-238. Sector-40, Noida"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="16sp"
+        android:textColor="@color/gray"
+        android:layout_marginTop="7dp"/>
+
+    <TextView
+        android:id="@+id/ItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ITEM"
+        android:layout_below="@+id/deliveryAddress"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textColor="@color/gray"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/codMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/deliveryAddress"
+        android:text="COD"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:background="#FFF9BA"
+        android:textColor="#FADD31"
         android:textSize="17sp"
-        android:layout_marginTop="3dp"/>
+        android:fontFamily="@font/open_sans_semibold"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/paidMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/deliveryAddress"
+        android:text="PAID"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:background="#a7d883"
+        android:textColor="#67BD46"
+        android:textSize="17sp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:visibility="gone"/>
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         android:background="@android:color/darker_gray"
-        android:layout_below="@+id/deliveryAddress"
-        android:layout_marginTop="3dp"/>
+        android:layout_below="@+id/ItemText"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"/>
+
+    <LinearLayout
+        android:id="@+id/orderedItemContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/divider">
+
+
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/orderedItems"
+        android:id="@+id/totAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1 x Aloo Tikki"
-        android:layout_below="@+id/divider"
-        android:layout_marginTop="17dp"
+        android:text="TOTAL AMOUNT: \u20b9270"
+        android:layout_below="@+id/orderedItemContainer"
         android:fontFamily="@font/open_sans_semibold"
-        android:textSize="19sp"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="7dp"
+        android:textSize="15sp"/>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/totAmount"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
 
     <LinearLayout
         android:id="@+id/actionContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_below="@+id/orderedItems"
-        android:layout_marginTop="17dp">
+        android:layout_below="@+id/divider2"
+        android:weightSum="3">
 
         <Button
             android:id="@+id/declineBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Decline"
-            android:fontFamily="@font/open_sans_semibold"
-            android:background="@null"
-            android:textColor="#e3404f"/>
+            android:layout_weight="1"
+            android:background="@drawable/decline_orderbtn_background"
+            android:textColor="#CC362F"
+            android:fontFamily="@font/open_sans_semibold"/>
 
         <Button
             android:id="@+id/acceptBtn"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
+            android:layout_marginStart="5dp"
             android:text="Accept Order"
-            android:fontFamily="@font/open_sans_semibold"
-            android:background="#69BE37"
-            android:textColor="@color/white"/>
+            android:background="@drawable/accept_orderbtn_background"
+            android:textColor="@color/white"
+            android:fontFamily="@font/open_sans_semibold"/>
 
     </LinearLayout>
 
