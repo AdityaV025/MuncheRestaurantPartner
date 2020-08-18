@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,8 @@ import java.util.Objects;
 import Models.RestaurantOrderItemModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ir.samanjafari.easycountdowntimer.CountDownInterface;
+import ir.samanjafari.easycountdowntimer.EasyCountDownTextview;
 
 public class OrdersFragment extends Fragment {
 
@@ -108,6 +111,26 @@ public class OrdersFragment extends Fragment {
                     Toast.makeText(getContext(), "Order is Accepted", Toast.LENGTH_SHORT).show();
                 });
 
+                holder.countDownTextview.setTime(0,0,0,50);
+                holder.countDownTextview.startTimer();
+                holder.countDownTextview.setOnTick(new CountDownInterface() {
+                    @Override
+                    public void onTick(long time) {
+
+                        if (time > 60000){
+                            Log.d("asdjkasd", "It' Minute");
+                        }else {
+                            Log.d("asdjkasd", "It' Second");
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        Toast.makeText(getContext(), "time is finished!", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @NonNull
@@ -145,6 +168,8 @@ public class OrdersFragment extends Fragment {
         Button mAcceptOrderBtn;
         @BindView(R.id.orderedItemContainer)
         LinearLayout orderItemLayout;
+        @BindView(R.id.easyCountDownTextview)
+        EasyCountDownTextview countDownTextview;
 
         public RestaurantItemHolder(View itemView) {
             super(itemView);

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:layout_marginBottom="7dp"
     android:padding="11dp">
@@ -61,8 +61,9 @@
         android:paddingBottom="3dp"
         android:background="#FFF9BA"
         android:textColor="#FADD31"
-        android:textSize="17sp"
+        android:textSize="13sp"
         android:fontFamily="@font/open_sans_semibold"
+        android:layout_marginTop="3dp"
         android:visibility="gone"/>
 
     <TextView
@@ -78,7 +79,8 @@
         android:paddingBottom="3dp"
         android:background="#a7d883"
         android:textColor="#67BD46"
-        android:textSize="17sp"
+        android:textSize="13sp"
+        android:layout_marginTop="3dp"
         android:fontFamily="@font/open_sans_semibold"
         android:visibility="gone"/>
 
@@ -128,14 +130,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/divider2"
-        android:weightSum="3">
+        android:weightSum="10">
 
         <Button
             android:id="@+id/declineBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Decline"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:background="@drawable/decline_orderbtn_background"
             android:textColor="#CC362F"
             android:fontFamily="@font/open_sans_semibold"/>
@@ -144,12 +146,25 @@
             android:id="@+id/acceptBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="4"
             android:layout_marginStart="5dp"
             android:text="Accept Order"
             android:background="@drawable/accept_orderbtn_background"
             android:textColor="@color/white"
             android:fontFamily="@font/open_sans_semibold"/>
+
+        <ir.samanjafari.easycountdowntimer.EasyCountDownTextview
+            android:id="@+id/easyCountDownTextview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:showHours="false"
+            app:textSize="17sp"
+            app:digitBackground="@color/white"
+            app:textColor="@color/colorAccent"
+            app:setAnimation="true"
+            app:colonColor="@color/grey"
+            app:showDays="false"
+            android:layout_weight="3"/>
 
     </LinearLayout>
 

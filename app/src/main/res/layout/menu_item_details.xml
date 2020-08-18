@@ -13,14 +13,14 @@
 
     <TextView
         android:id="@+id/itemName"
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/foodMark"
         android:layout_marginStart="20dp"
         android:textColor="@color/colorAccent"
         android:fontFamily="@font/open_sans_semibold"
         android:textSize="15sp"
-        android:layout_marginTop="17dp"/>
+        android:layout_marginTop="17dp" />
 
     <TextView
         android:id="@+id/itemCategory"
