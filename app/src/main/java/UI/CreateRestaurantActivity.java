@@ -106,6 +106,9 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
             RestaurantData.put("device_token", Token);
             RestaurantData.put("latitude", latitude);
             RestaurantData.put("longitude", longitude);
+            RestaurantData.put("knownname", knownName);
+            RestaurantData.put("sublocality", subLocality);
+            RestaurantData.put("postalcode",postalCode);
             RestaurantData.put("user_role", checkedDesignation);
             RestaurantData.put("average_price", restaurantAveragePrice);
             RestaurantData.put("restaurant_spotimage", "empty");

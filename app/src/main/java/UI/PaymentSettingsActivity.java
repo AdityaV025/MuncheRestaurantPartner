@@ -1,6 +1,7 @@
 package UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,8 @@ public class PaymentSettingsActivity extends AppCompatActivity implements View.O
     private String ruid;
     private static String RES_LIST = "RestaurantList";
     private Button mSaveInfoBtn;
+    private Toolbar mPaymentToolBar;
+    private ImageView mGoBackArrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,11 @@ public class PaymentSettingsActivity extends AppCompatActivity implements View.O
     }
 
     private void init() {
+        mPaymentToolBar = findViewById(R.id.paymentToolBar);
+        mGoBackArrow = findViewById(R.id.goBackArrow);
+        mGoBackArrow.setOnClickListener(view -> {
+          this.onBackPressed();
+        });
         db = FirebaseFirestore.getInstance();
         ruid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         mCodCheckBox = findViewById(R.id.codCheckBox);

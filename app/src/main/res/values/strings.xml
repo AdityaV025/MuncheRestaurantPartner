@@ -43,4 +43,6 @@
     <string name="write_a_short_description">Write a short Description *</string>
     <string name="average_price_per_person">Average Price Per Person *</string>
     <string name="default_notification_channel_id">MUNCHE_CH_25</string>
+    <string name="decline">Decline</string>
+    <string name="accept_order">Accept Order</string>
 </resources>

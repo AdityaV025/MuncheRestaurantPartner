@@ -6,10 +6,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,6 +23,8 @@ import com.bumptech.glide.Glide;
 import com.example.muncherestaurantpartner.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,7 +33,10 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.TestOnly;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import Models.MenuItemModel;
@@ -91,7 +99,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                 String isActive = model.getIs_active();
                 if (isActive.equals("yes")){
                     holder.isActiveSwitch.setChecked(true);
-                }else {
+                }else if(isActive.equals("no")){
                     holder.isActiveSwitch.setChecked(false);
                 }
                 String specImage = String.valueOf(model.getSpecification());
@@ -103,8 +111,23 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                             .load(R.drawable.non_veg_symbol).into(holder.foodSpecification);
                 }
                 holder.mItemPrice.setText("\u20B9 " + model.getPrice());
-                holder.itemView.setOnClickListener(v -> {
+
+                holder.isActiveSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+                    Map<String, Object> updateItemStatusNotAvailable = new HashMap<>();
+                    updateItemStatusNotAvailable.put("is_active", "no");
+                    if (!b){
+                        db.collection("Menu").document(Ruid).collection("MenuItems")
+                                .document(holder.mItemName.getText().toString()).update(updateItemStatusNotAvailable).addOnCompleteListener(task -> {
+                        });
+                    }
+                    else {
+                        Map<String, Object> updateItemStatusAvailable = new HashMap<>();
+                        updateItemStatusAvailable.put("is_active", "yes");
+                        db.collection("Menu").document(Ruid).collection("MenuItems").document(holder.mItemName.getText().toString()).update(updateItemStatusAvailable).addOnCompleteListener(task -> {
+                        });
+                    }
                 });
+
             }
             @NotNull
             @Override
@@ -133,6 +156,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         TextView mItemPrice;
         @BindView(R.id.itemCategory)
         TextView mItemCategory;
+        @SuppressLint("UseSwitchCompatOrMaterialCode")
         @BindView(R.id.itemActiveSwitch)
         Switch isActiveSwitch;
 

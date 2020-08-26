@@ -99,9 +99,31 @@ public class OrdersFragment extends Fragment {
                 }
 
                 holder.mOrderID.setText("ORDER ID: " + model.getOrder_id());
+                holder.mCustomerName.setText(model.getCustomer_name() + "'s Order");
                 holder.mDeliveryAddress.setText("Address: " + model.getDelivery_address());
                 holder.mOrderTime.setText(model.getShort_time());
                 holder.mTotalAmount.setText("TOTAL AMOUNT: " + model.getTotal_amount());
+
+                holder.countDownTextview.setTime(0,0,0,30);
+                holder.countDownTextview.startTimer();
+                final Typeface typeface2 = ResourcesCompat.getFont(Objects.requireNonNull(getContext()), R.font.open_sans_semibold);
+                holder.countDownTextview.setTypeFace(typeface2);
+                holder.countDownTextview.setOnTick(new CountDownInterface() {
+                    @Override
+                    public void onTick(long time) {
+
+                        if (time > 60000){
+                            holder.timeFormatText.setText("minutes left");
+                        }else {
+                            holder.timeFormatText.setText("seconds left");
+                        }
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                    }
+                });
 
                 holder.mOrderDeclineBtn.setOnClickListener(view -> {
                     Toast.makeText(getContext(), "Order is Declined", Toast.LENGTH_SHORT).show();
@@ -109,28 +131,16 @@ public class OrdersFragment extends Fragment {
 
                 holder.mAcceptOrderBtn.setOnClickListener(view -> {
                     Toast.makeText(getContext(), "Order is Accepted", Toast.LENGTH_SHORT).show();
+
+
+
                 });
 
-                holder.countDownTextview.setTime(0,0,0,50);
-                holder.countDownTextview.startTimer();
-                holder.countDownTextview.setOnTick(new CountDownInterface() {
-                    @Override
-                    public void onTick(long time) {
-
-                        if (time > 60000){
-                            Log.d("asdjkasd", "It' Minute");
-                        }else {
-                            Log.d("asdjkasd", "It' Second");
-                        }
-
-
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        Toast.makeText(getContext(), "time is finished!", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if (model.getExtra_instructions().equals("none")){
+                    holder.extraInstructionsText.setText("\u2022 No additional instruction");
+                }else {
+                    holder.extraInstructionsText.setText("\u2022 " + model.getExtra_instructions());
+                }
             }
 
             @NonNull
@@ -170,6 +180,12 @@ public class OrdersFragment extends Fragment {
         LinearLayout orderItemLayout;
         @BindView(R.id.easyCountDownTextview)
         EasyCountDownTextview countDownTextview;
+        @BindView(R.id.timeFormatText)
+        TextView timeFormatText;
+        @BindView(R.id.extraInstructionsText)
+        TextView extraInstructionsText;
+        @BindView(R.id.customerNameText)
+        TextView mCustomerName;
 
         public RestaurantItemHolder(View itemView) {
             super(itemView);

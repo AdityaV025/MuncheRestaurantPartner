@@ -27,15 +27,33 @@
         android:textColor="@color/colorAccent"/>
 
     <TextView
+        android:id="@+id/customerNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_below="@id/orderId"
+        android:fontFamily="@font/open_sans_bold"
+        android:textSize="16sp"
+        android:textColor="@color/colorAccent"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/customerNameText"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"/>
+
+    <TextView
         android:id="@+id/deliveryAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/orderId"
+        android:layout_below="@+id/divider"
         android:text="Address: F-238. Sector-40, Noida"
         android:fontFamily="@font/open_sans_semibold"
         android:textSize="16sp"
-        android:textColor="@color/gray"
-        android:layout_marginTop="7dp"/>
+        android:textColor="@color/gray" />
 
     <TextView
         android:id="@+id/ItemText"
@@ -85,7 +103,7 @@
         android:visibility="gone"/>
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/divider1"
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         android:background="@android:color/darker_gray"
@@ -98,8 +116,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@+id/divider">
-
+        android:layout_below="@+id/divider1">
 
 
     </LinearLayout>
@@ -115,12 +132,51 @@
         android:layout_marginTop="7dp"
         android:textSize="15sp"/>
 
+    <TextView
+        android:id="@+id/extraInstructionsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+        android:text="\u2022 Please make the food less spicy"
+        android:layout_below="@+id/totAmount"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/gray"
+        android:textSize="15sp" />
+
+    <ir.samanjafari.easycountdowntimer.EasyCountDownTextview
+        android:id="@+id/easyCountDownTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:showHours="false"
+        app:textSize="13sp"
+        app:digitBackground="@color/white"
+        app:textColor="@color/colorAccent"
+        app:setAnimation="true"
+        app:colonColor="@color/grey"
+        app:showDays="false"
+        android:layout_below="@+id/orderedItemContainer"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="7dp"
+        android:layout_toStartOf="@+id/timeFormatText"
+        android:layout_marginEnd="3dp"/>
+
+    <TextView
+        android:id="@+id/timeFormatText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/orderedItemContainer"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="13sp"
+        android:textColor="@color/colorAccent"/>
+
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         android:background="@android:color/darker_gray"
-        android:layout_below="@+id/totAmount"
+        android:layout_below="@+id/extraInstructionsText"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"/>
 
@@ -130,14 +186,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/divider2"
-        android:weightSum="10">
+        android:weightSum="5">
 
         <Button
             android:id="@+id/declineBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Decline"
-            android:layout_weight="3"
+            android:text="@string/decline"
+            android:layout_weight="2"
             android:background="@drawable/decline_orderbtn_background"
             android:textColor="#CC362F"
             android:fontFamily="@font/open_sans_semibold"/>
@@ -146,26 +202,12 @@
             android:id="@+id/acceptBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="3"
             android:layout_marginStart="5dp"
-            android:text="Accept Order"
+            android:text="@string/accept_order"
             android:background="@drawable/accept_orderbtn_background"
             android:textColor="@color/white"
             android:fontFamily="@font/open_sans_semibold"/>
-
-        <ir.samanjafari.easycountdowntimer.EasyCountDownTextview
-            android:id="@+id/easyCountDownTextview"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            app:showHours="false"
-            app:textSize="17sp"
-            app:digitBackground="@color/white"
-            app:textColor="@color/colorAccent"
-            app:setAnimation="true"
-            app:colonColor="@color/grey"
-            app:showDays="false"
-            android:layout_weight="3"/>
-
     </LinearLayout>
 
 </RelativeLayout>

@@ -4,17 +4,30 @@ import java.util.ArrayList;
 
 public class RestaurantOrderItemModel {
 
+    private ArrayList<String> ordered_items;
+    private String short_time;
+    private String order_id;
+    private String delivery_address;
+    private String total_amount;
+    private String payment_method;
+    private String ordered_at;
+    private String extra_instructions;
+    private String customer_name;
+    private String customer_uid;
+
     public RestaurantOrderItemModel() {
     }
-
-    public RestaurantOrderItemModel(ArrayList<String> ordered_items, String short_time, String order_id, String delivery_address, String total_amount, String payment_method, String ordered_at) {
+    public RestaurantOrderItemModel(ArrayList<String> ordered_items, String short_time, String order_id, String delivery_address, String total_amount, String payment_method, String ordered_at, String extra_instructions, String customer_name, String customer_uid) {
         this.ordered_items = ordered_items;
         this.short_time = short_time;
         this.order_id = order_id;
         this.delivery_address = delivery_address;
+        this.customer_name = customer_name;
+        this.customer_uid = customer_uid;
         this.total_amount = total_amount;
         this.payment_method = payment_method;
         this.ordered_at = ordered_at;
+        this.extra_instructions = extra_instructions;
     }
 
     public ArrayList<String> getOrdered_items() {
@@ -49,6 +62,22 @@ public class RestaurantOrderItemModel {
         this.delivery_address = delivery_address;
     }
 
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getCustomer_uid() {
+        return customer_uid;
+    }
+
+    public void setCustomer_uid(String customer_uid) {
+        this.customer_uid = customer_uid;
+    }
+
     public String getTotal_amount() {
         return total_amount;
     }
@@ -73,12 +102,12 @@ public class RestaurantOrderItemModel {
         this.ordered_at = ordered_at;
     }
 
-    private ArrayList<String> ordered_items;
-    private String short_time;
-    private String order_id;
-    private String delivery_address;
-    private String total_amount;
-    private String payment_method;
-    private String ordered_at;
+    public String getExtra_instructions() {
+        return extra_instructions;
+    }
+
+    public void setExtra_instructions(String extra_instructions) {
+        this.extra_instructions = extra_instructions;
+    }
 
 }
