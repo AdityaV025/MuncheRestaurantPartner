@@ -49,7 +49,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     private AVLoadingIndicatorView mLoadingView;
     private ProgressDialog progressDialog;
     private SwitchButton mSwitchBtn;
-    private LinearLayout mLogOut, mPaymentSettings;
+    private LinearLayout mLogOut, mPaymentSettings, mPrepTimeSettings;
 
     //TODO: Implement ChiliPhotoPicker in MyProfileFragment
 
@@ -62,6 +62,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         loadResSpotImage();
         mLogOut.setOnClickListener(this);
         mPaymentSettings.setOnClickListener(this);
+        mPrepTimeSettings.setOnClickListener(this);
         mChangeRestaurantSpotImageBtn.setOnClickListener(this);
 
     }
@@ -74,6 +75,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         mLoadingView = findViewById(R.id.loadingView);
         mLogOut = findViewById(R.id.logOutContainer);
         mPaymentSettings = findViewById(R.id.paymentSettingContainer);
+        mPrepTimeSettings = findViewById(R.id.prepTimeContainer);
         mRestaurantNameText = findViewById(R.id.restaurantNameText);
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
@@ -139,6 +141,11 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
             case R.id.paymentSettingContainer:
                 Intent intent = new Intent(this, PaymentSettingsActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.prepTimeContainer:
+                Intent intent1 = new Intent(this, SetPrepTimeActivity.class);
+                startActivity(intent1);
                 break;
 
         }

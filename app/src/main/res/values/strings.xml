@@ -45,4 +45,5 @@
     <string name="default_notification_channel_id">MUNCHE_CH_25</string>
     <string name="decline">Decline</string>
     <string name="accept_order">Accept Order</string>
+    <string name="please_set_the_preparation_time_of_each_time_item_you_need_to_prepare">Please set the preparation time of each item you need to prepare</string>
 </resources>

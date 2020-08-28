@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/munche_res"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="UI.SetPrepTimeActivity"></activity>
         <activity android:name="UI.PaymentSettingsActivity" />
         <activity android:name="UI.MyProfileActivity" />
         <activity android:name="UI.CreateRestaurantActivity" />
@@ -27,17 +28,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service android:name="Utils.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="com.example.munche.firebasepushnotifications.TARGETNOTIFICATION" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

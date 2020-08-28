@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="UI.SetPrepTimeActivity">
+
+    <include layout="@layout/simple_toolbar"
+        android:id="@+id/prepTimeToolBar"/>
+
+    <TextView
+        android:id="@+id/saveText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/please_set_the_preparation_time_of_each_time_item_you_need_to_prepare"
+        android:layout_below="@+id/prepTimeToolBar"
+        android:layout_margin="13dp"
+        android:fontFamily="@font/open_sans"
+        android:textSize="21sp"
+        android:textColor="@color/gray"/>
+
+    <LinearLayout
+        android:id="@+id/setPrepTimeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_below="@+id/saveText"
+        android:layout_margin="13dp">
+
+        <ImageView
+            android:id="@+id/minusTimeBtn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:src="@drawable/minus_time"
+            android:layout_weight="1"
+            android:background="@drawable/createres_background_field"/>
+
+        <TextView
+            android:id="@+id/showPrepTime"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:fontFamily="@font/open_sans_semibold"
+            android:layout_weight="3"
+            android:textSize="23sp"
+            android:textColor="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/addTimeBtn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:src="@drawable/add_time"
+            android:layout_weight="1"
+            android:background="@drawable/createres_background_field"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/savePrepTimeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimaryDark"
+        android:textSize="21sp"
+        android:layout_margin="13dp"/>
+
+</RelativeLayout>
