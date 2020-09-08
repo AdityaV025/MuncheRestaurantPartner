@@ -1,14 +1,17 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="Fragments.MenuFragment">
+
+    <include layout="@layout/simple_toolbar"
+        android:id="@+id/newMenuItemToolBar"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/menuItemRecyclerView"
@@ -16,19 +19,7 @@
             android:layout_height="match_parent"
             android:overScrollMode="never"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/createNewMenuBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="19dp"
-            app:backgroundTint="@color/colorPrimaryDark"
-            app:elevation="6dp"
-            app:fabSize="normal"
-            android:src="@drawable/ic_baseline_add_24"/>
-
     </RelativeLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>
 

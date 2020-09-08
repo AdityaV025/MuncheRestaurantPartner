@@ -50,7 +50,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
     private String Ruid;
-    private FloatingActionButton mCreateNewMenuBtn;
+    private TextView mCreateNewMenuBtn;
     private FirestoreRecyclerAdapter<MenuItemModel, MenuItemHolder> adapter;
     LinearLayoutManager linearLayoutManager;
     private RecyclerView mMenuItemRecyclerView;
@@ -74,6 +74,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
     private void init() {
         mCreateNewMenuBtn = view.findViewById(R.id.createNewMenuBtn);
+        mCreateNewMenuBtn.setVisibility(View.VISIBLE);
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
         assert mCurrentUser != null;
@@ -128,6 +129,21 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
                     }
                 });
 
+                holder.mEditMenuView.setOnClickListener(view1 -> {
+                    Fragment fragment = new EditMenuFragment();
+                    Bundle args = new Bundle();
+                    args.putString("name", holder.mItemName.getText().toString());
+                    args.putString("price", holder.mItemPrice.getText().toString());
+                    args.putString("specification", model.getSpecification());
+                    args.putString("category", holder.mItemCategory.getText().toString());
+                    fragment.setArguments(args);
+                    FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                });
+
             }
             @NotNull
             @Override
@@ -159,6 +175,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         @SuppressLint("UseSwitchCompatOrMaterialCode")
         @BindView(R.id.itemActiveSwitch)
         Switch isActiveSwitch;
+        @BindView(R.id.editMenuItem)
+        ImageView mEditMenuView;
 
         public MenuItemHolder(View itemView) {
             super(itemView);

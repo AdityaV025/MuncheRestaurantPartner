@@ -51,8 +51,6 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     private SwitchButton mSwitchBtn;
     private LinearLayout mLogOut, mPaymentSettings, mPrepTimeSettings;
 
-    //TODO: Implement ChiliPhotoPicker in MyProfileFragment
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

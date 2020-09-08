@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -42,7 +41,7 @@
             android:hint="@string/your_restaurant_name"
             android:textSize="18sp"
             android:textColor="@color/colorAccent"
-            android:fontFamily="@font/open_sans_semibold"
+            android:fontFamily="@font/open_sans"
             android:background="@drawable/createres_background_field"
             android:inputType="text"/>
 
@@ -66,16 +65,41 @@
             android:hint="@string/restaurant_s_city"
             android:textSize="18sp"
             android:textColor="@color/colorAccent"
-            android:fontFamily="@font/open_sans_semibold"
+            android:fontFamily="@font/open_sans"
             android:background="@drawable/createres_background_field"
             android:inputType="text"/>
+
+        <TextView
+            android:id="@+id/resCuisineText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/restaurantCity"
+            android:layout_marginTop="19dp"
+            android:text="@string/restaurant_cuisines"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/open_sans"/>
+
+        <com.hootsuite.nachos.NachoTextView
+            android:id="@+id/restaurantCuisine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/resCuisineText"
+            android:layout_marginTop="5dp"
+            app:chipBackground="@color/colorPrimaryDark"
+            app:chipTextColor="@color/lightWhite"
+            android:hint="@string/select_cuisines"
+            app:chipSpacing="7dp"
+            app:chipTextSize="16dp"
+            app:chipHeight="30dp"
+            app:chipVerticalSpacing="3dp" />
 
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@android:color/darker_gray"
-            android:layout_below="@+id/restaurantCity"
+            android:layout_below="@+id/restaurantCuisine"
             android:layout_marginTop="11dp" />
 
         <TextView
@@ -138,7 +162,7 @@
             android:hint="@string/phone_number"
             android:textSize="18sp"
             android:textColor="@color/colorAccent"
-            android:fontFamily="@font/open_sans_semibold"
+            android:fontFamily="@font/open_sans"
             android:background="@drawable/createres_background_field"
             android:inputType="phone"
             android:maxLength="10"/>
@@ -163,7 +187,7 @@
             android:hint="@string/address"
             android:textSize="18sp"
             android:textColor="@color/colorAccent"
-            android:fontFamily="@font/open_sans_semibold"
+            android:fontFamily="@font/open_sans"
             android:background="@drawable/createres_background_field"
             android:inputType="textPostalAddress"/>
 

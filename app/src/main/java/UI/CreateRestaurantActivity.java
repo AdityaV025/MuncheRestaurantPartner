@@ -11,6 +11,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -18,10 +19,13 @@ import android.widget.Toast;
 
 import com.example.muncherestaurantpartner.MainActivity;
 import com.example.muncherestaurantpartner.R;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
+import com.hootsuite.nachos.NachoTextView;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -42,6 +46,12 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
     private FirebaseFirestore db;
     private GPSTracker gpsTracker;
     private Geocoder geocoder;
+    private NachoTextView mResCuisineText;
+    String[] suggestions = new String[]{"Appetizers","Entrees","Starters","Salads",
+            "Main Course","Desserts","Ice Cream","Biryani","Parathas","Pizzas","Burgers",
+            "Sandwiches","Drinks","Beverages","Alcoholics","Sushi", "Pasta","Cakes","Pastries",
+            "South Indian","North Indian","Thali","Dosas","Chinese", "Soups","Bakery"
+            ,"Thai","Italian","Fast Food","Rolls","Sweets","Mughlai"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +69,9 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
         db = FirebaseFirestore.getInstance();
         mRestaurantName = findViewById(R.id.restaurantName);
         mRestaurantCity = findViewById(R.id.restaurantCity);
+        mResCuisineText = findViewById(R.id.restaurantCuisine);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, suggestions);
+        mResCuisineText.setAdapter(adapter);
         mRestaurantPhoneNumber = findViewById(R.id.restaurantPhoneNumber);
         mRestaurantAddress = findViewById(R.id.restaurantAddress);
         mRestaurantAveragePrice = findViewById(R.id.restaurantAveragePriceEditText);
@@ -77,7 +90,8 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
                 || mRestaurantCity.getText().toString().isEmpty()
                 || mRestaurantPhoneNumber.getText().toString().isEmpty()
                 || mRestaurantAddress.getText().toString().isEmpty()
-                || mRestaurantAveragePrice.getText().toString().isEmpty()){
+                || mRestaurantAveragePrice.getText().toString().isEmpty()
+                || mResCuisineText.getAllChips().isEmpty()){
 
             Toast.makeText(this, "Please Enter Correct Information", Toast.LENGTH_LONG).show();
 
@@ -98,6 +112,9 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
 
             Map RestaurantData = new HashMap<>();
             RestaurantData.put("restaurant_name",resName);
+            RestaurantData.put("search_restaurant",resName.toLowerCase());
+            RestaurantData.put("restaurant_cuisine", FieldValue.arrayUnion(mResCuisineText.getChipValues().toArray()));
+            RestaurantData.put("cuisine_text", mResCuisineText.getChipValues().toString());
             RestaurantData.put("restaurant_phonenumber", resNum);
             RestaurantData.put("restaurant_city", resCity);
             RestaurantData.put("restaurant_address", resAddress);

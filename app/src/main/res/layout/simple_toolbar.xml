@@ -5,19 +5,43 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorPrimaryDark">
 
-    <ImageView
-        android:id="@+id/goBackBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back_arrow"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/setTextChoice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:textColor="@color/lightWhite"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textSize="20sp"/>
+        <ImageView
+            android:id="@+id/goBackBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/setTextChoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:textColor="@color/lightWhite"
+            android:fontFamily="@font/open_sans_semibold"
+            android:layout_toEndOf="@+id/goBackBtn"
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:text="Your Menu Items"/>
+
+        <TextView
+            android:id="@+id/createNewMenuBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="17dp"
+            android:text="New +"
+            android:background="@drawable/new_menu_item_btn_background"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
 
 </androidx.appcompat.widget.Toolbar>

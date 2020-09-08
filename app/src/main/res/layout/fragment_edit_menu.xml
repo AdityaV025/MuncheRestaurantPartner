@@ -8,7 +8,7 @@
     android:padding="17dp">
 
     <TextView
-        android:id="@+id/chooseCategoryText"
+        android:id="@+id/chooseCategoryTextEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/choose_category"
@@ -17,29 +17,29 @@
         android:textSize="17sp"/>
 
     <com.jaredrummler.materialspinner.MaterialSpinner
-        android:id="@+id/chooseCategorySpinner"
+        android:id="@+id/chooseCategorySpinnerEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chooseCategoryText"
+        android:layout_below="@+id/chooseCategoryTextEdit"
         android:layout_marginTop="9dp"
         app:ms_background_color="@color/white" />
 
     <TextView
-        android:id="@+id/createMenuItemText"
+        android:id="@+id/createMenuItemTextEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create_a_new_menu_item"
-        android:layout_below="@+id/chooseCategorySpinner"
+        android:layout_below="@+id/chooseCategorySpinnerEdit"
         android:layout_marginTop="17dp"
         android:textSize="17sp"
         android:fontFamily="@font/open_sans_semibold"
         android:textColor="@color/colorAccent"/>
 
     <EditText
-        android:id="@+id/newMenuItemEditText"
+        android:id="@+id/newMenuItemEditTextEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/createMenuItemText"
+        android:layout_below="@+id/createMenuItemTextEdit"
         android:background="@drawable/create_menu_background"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/open_sans"
@@ -47,33 +47,33 @@
         android:hint="Menu Item"/>
 
     <TextView
-        android:id="@+id/itemSpecification"
+        android:id="@+id/itemSpecificationEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/item_specification"
-        android:layout_below="@+id/newMenuItemEditText"
+        android:layout_below="@+id/newMenuItemEditTextEdit"
         android:layout_marginTop="17dp"
         android:fontFamily="@font/open_sans_semibold"
         android:textColor="@color/colorAccent"
         android:textSize="17sp"/>
 
     <LinearLayout
-        android:id="@+id/linearContainer"
+        android:id="@+id/linearContainerEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/itemSpecification"
+        android:layout_below="@+id/itemSpecificationEdit"
         android:layout_marginTop="15dp"
         android:weightSum="3">
 
         <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/foodVegOrNotSpinner"
+            android:id="@+id/foodVegOrNotSpinnerEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
         <EditText
-            android:id="@+id/menuItemPrice"
+            android:id="@+id/menuItemPriceEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -87,29 +87,51 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/menuItemDescription"
+        android:id="@+id/menuItemDescriptionEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:layout_below="@+id/linearContainer"
+        android:layout_below="@+id/linearContainerEdit"
         android:layout_marginTop="17dp"
         android:background="@drawable/createres_background_field"
         android:hint="@string/write_a_short_description"
         android:maxLines="4"/>
 
-    <Button
-        android:id="@+id/saveItemInfoBtn"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/menuItemDescription"
-        android:layout_marginTop="27dp"
-        android:background="@drawable/login_btn_background"
-        android:text="Save"
-        android:textAllCaps="false"
-        android:textColor="@color/lightWhite"
-        android:textSize="17sp"
-        android:fontFamily="@font/open_sans_semibold"/>
+        android:layout_below="@+id/menuItemDescriptionEdit"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginTop="27dp">
+
+        <Button
+            android:id="@+id/deleteItemInfoBtnEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/delete_item_btn_background"
+            android:text="Delete"
+            android:textAllCaps="false"
+            android:textColor="@color/lightWhite"
+            android:textSize="17sp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/updateItemInfoBtnEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_btn_background"
+            android:text="Update"
+            android:textAllCaps="false"
+            android:textColor="@color/lightWhite"
+            android:textSize="17sp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:layout_weight="2"
+            android:layout_marginStart="5dp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

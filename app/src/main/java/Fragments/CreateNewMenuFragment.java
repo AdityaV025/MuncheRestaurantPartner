@@ -17,16 +17,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.muncherestaurantpartner.R;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -106,8 +102,6 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
                     .collection("MenuItems")
                     .document(mItemName);
 
-//            mRestRef = db.collection("RestaurantList").document(Ruid);
-//            mRestRef.update("Categories", FieldValue.arrayUnion(mMenuCategory));
             String menuItemId = String.valueOf(UUID.randomUUID()).replace("-","");
             Map<String, String> menuItemMap = new HashMap<>();
             menuItemMap.put("name", mItemName);
