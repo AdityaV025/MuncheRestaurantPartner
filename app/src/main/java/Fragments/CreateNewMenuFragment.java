@@ -111,6 +111,7 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
             menuItemMap.put("description", mItemDesc);
             menuItemMap.put("is_active", "yes");
             menuItemMap.put("menuUid" , menuItemId);
+            menuItemMap.put("category_index", String.valueOf(mCategorySpinner.getSelectedIndex()));
 
             mMenuRef.set(menuItemMap).addOnSuccessListener(aVoid -> {
                 Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_LONG).show();
