@@ -32,6 +32,20 @@ public class EditMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_edit_menu, container, false);
 
+        init();
+
         return view;
     }
+
+    private void init() {
+        db = FirebaseFirestore.getInstance();
+        mCategorySpinnerEdit = view.findViewById(R.id.chooseCategorySpinnerEdit);
+        mFoodVegOrNotSpinnerEdit = view.findViewById(R.id.foodVegOrNotSpinnerEdit);
+        mMenuItemNameEdit = view.findViewById(R.id.newMenuItemEditTextEdit);
+        mMenuItemPriceEdit = view.findViewById(R.id.menuItemPriceEdit);
+        mMenuItemDescEdit = view.findViewById(R.id.menuItemDescriptionEdit);
+        mUpdateMenuItemBtn = view.findViewById(R.id.updateItemInfoBtnEdit);
+        mDeleteMenuItemBtn = view.findViewById(R.id.deleteItemInfoBtnEdit);
+    }
+
 }

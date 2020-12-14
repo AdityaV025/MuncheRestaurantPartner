@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/munche_res"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="UI.SetPrepTimeActivity"></activity>
+        <activity android:name="UI.SetPrepTimeActivity" />
         <activity android:name="UI.PaymentSettingsActivity" />
         <activity android:name="UI.MyProfileActivity" />
         <activity android:name="UI.CreateRestaurantActivity" />
