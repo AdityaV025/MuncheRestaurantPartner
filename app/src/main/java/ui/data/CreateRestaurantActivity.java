@@ -1,15 +1,10 @@
-package UI;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+package ui.data;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,35 +12,38 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.example.muncherestaurantpartner.MainActivity;
 import com.example.muncherestaurantpartner.R;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.GeoPoint;
 import com.hootsuite.nachos.NachoTextView;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-import Utils.GPSTracker;
+import utils.GPSTracker;
 
 public class CreateRestaurantActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText mRestaurantName,mRestaurantPhoneNumber, mRestaurantCity, mRestaurantAddress, mRestaurantAveragePrice;
     private Button mSaveResInfoBtn;
     private RadioButton mOwnerRadioBtn, mManagerRadioBtn;
-    private String resName,resNum,resCity,resAddress,checkedDesignation,RestaurantUid,Token,
-            UserPhoneNumber,restaurantAveragePrice,city,state,country,postalCode,knownName,
-            subLocality,subAdminArea,finalAddress,address;
+    private String checkedDesignation;
+    private String RestaurantUid;
+    private String Token;
+    private String UserPhoneNumber;
+    private String postalCode;
+    private String knownName;
+    private String subLocality;
     private Double latitude, longitude;
     private List<Address> addresses;
     private FirebaseFirestore db;
-    private GPSTracker gpsTracker;
-    private Geocoder geocoder;
     private NachoTextView mResCuisineText;
     String[] suggestions = new String[]{"Appetizers","Entrees","Starters","Salads",
             "Main Course","Desserts","Ice Cream","Biryani","Parathas","Pizzas","Burgers",
@@ -96,11 +94,11 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
             Toast.makeText(this, "Please Enter Correct Information", Toast.LENGTH_LONG).show();
 
         }else {
-            resName = mRestaurantName.getText().toString();
-            resCity  = mRestaurantCity.getText().toString();
-            resNum =  mRestaurantPhoneNumber.getText().toString();
-            resAddress = mRestaurantAddress.getText().toString();
-            restaurantAveragePrice = mRestaurantAveragePrice.getText().toString();
+            String resName = mRestaurantName.getText().toString();
+            String resCity = mRestaurantCity.getText().toString();
+            String resNum = mRestaurantPhoneNumber.getText().toString();
+            String resAddress = mRestaurantAddress.getText().toString();
+            String restaurantAveragePrice = mRestaurantAveragePrice.getText().toString();
 
             if (mOwnerRadioBtn.isChecked()){
                 checkedDesignation = mOwnerRadioBtn.getText().toString();
@@ -110,9 +108,9 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
                 Toast.makeText(this, "Please Select Correct Role", Toast.LENGTH_LONG).show();
             }
 
-            Map RestaurantData = new HashMap<>();
-            RestaurantData.put("restaurant_name",resName);
-            RestaurantData.put("search_restaurant",resName.toLowerCase());
+            HashMap<String,Object> RestaurantData = new HashMap<>();
+            RestaurantData.put("restaurant_name", resName);
+            RestaurantData.put("search_restaurant", resName.toLowerCase());
             RestaurantData.put("restaurant_cuisine", FieldValue.arrayUnion(mResCuisineText.getChipValues().toArray()));
             RestaurantData.put("cuisine_text", mResCuisineText.getChipValues().toString());
             RestaurantData.put("restaurant_phonenumber", resNum);
@@ -156,12 +154,12 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
     }
 
     private void getLocation() {
-        gpsTracker = new GPSTracker(CreateRestaurantActivity.this);
+        GPSTracker gpsTracker = new GPSTracker(CreateRestaurantActivity.this);
         if(gpsTracker.canGetLocation()){
             latitude = gpsTracker.getLatitude();
             longitude = gpsTracker.getLongitude();
 
-            geocoder = new Geocoder(CreateRestaurantActivity.this, Locale.getDefault());
+            Geocoder geocoder = new Geocoder(CreateRestaurantActivity.this, Locale.getDefault());
 
             try {
                 addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
@@ -169,16 +167,12 @@ public class CreateRestaurantActivity extends AppCompatActivity implements View.
                 e.printStackTrace();
             }
 
-            address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-            city = addresses.get(0).getLocality();
-            state = addresses.get(0).getAdminArea();
-            country = addresses.get(0).getCountryName();
+            String city = addresses.get(0).getLocality();
             postalCode = addresses.get(0).getPostalCode();
             knownName = addresses.get(0).getFeatureName();
             subLocality = addresses.get(0).getSubLocality();
-            subAdminArea = addresses.get(0).getSubAdminArea();
 
-            finalAddress = knownName + ", " + subLocality +  ", " + city + ", " + postalCode;
+            String finalAddress = knownName + ", " + subLocality + ", " + city + ", " + postalCode;
 
             mRestaurantAddress.setText(finalAddress);
 

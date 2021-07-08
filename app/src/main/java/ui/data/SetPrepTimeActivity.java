@@ -1,17 +1,15 @@
-package UI;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+package ui.data;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.muncherestaurantpartner.MainActivity;
 import com.example.muncherestaurantpartner.R;
@@ -25,13 +23,10 @@ import java.util.Objects;
 
 public class SetPrepTimeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView mPrepTimeText, mToolBarText;
-    private Button mSaveTimeBtn;
-    private ImageView mAddTimeBtn, mMinusTimeBtn, mGoBackBtn;
-    private Toolbar mToolBar;
+    private TextView mPrepTimeText;
     private FirebaseFirestore db;
     private String resUid;
-    private String RES_LIST = "RestaurantList";
+    private final String RES_LIST = "RestaurantList";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +42,12 @@ public class SetPrepTimeActivity extends AppCompatActivity implements View.OnCli
         db = FirebaseFirestore.getInstance();
         resUid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         mPrepTimeText = findViewById(R.id.showPrepTime);
-        mToolBar = findViewById(R.id.prepTimeToolBar);
-        mGoBackBtn = findViewById(R.id.goBackBtn);
-        mToolBarText = findViewById(R.id.setTextChoice);
+        ImageView mGoBackBtn = findViewById(R.id.goBackBtn);
+        TextView mToolBarText = findViewById(R.id.setTextChoice);
         mToolBarText.setText("Set Preparation Time");
-        mAddTimeBtn = findViewById(R.id.addTimeBtn);
-        mMinusTimeBtn = findViewById(R.id.minusTimeBtn);
-        mSaveTimeBtn = findViewById(R.id.savePrepTimeBtn);
+        ImageView mAddTimeBtn = findViewById(R.id.addTimeBtn);
+        ImageView mMinusTimeBtn = findViewById(R.id.minusTimeBtn);
+        Button mSaveTimeBtn = findViewById(R.id.savePrepTimeBtn);
         mGoBackBtn.setOnClickListener(this);
         mAddTimeBtn.setOnClickListener(this);
         mMinusTimeBtn.setOnClickListener(this);

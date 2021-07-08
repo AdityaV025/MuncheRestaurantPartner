@@ -1,7 +1,4 @@
-package UI;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+package ui.auth;
 
 import android.content.Intent;
 import android.os.Build;
@@ -10,7 +7,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.muncherestaurantpartner.MainActivity;
 import com.example.muncherestaurantpartner.R;
@@ -21,16 +22,19 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.installations.FirebaseInstallations;
+
+import java.util.Objects;
 
 import in.aabhasjindal.otptextview.OTPListener;
 import in.aabhasjindal.otptextview.OtpTextView;
+import ui.data.CreateRestaurantActivity;
 
 public class OtpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
-    private String mAuthVerificationId, phoneNum;
+    private String mAuthVerificationId, phoneNum, deviceToken;
     private OtpTextView mOtpText;
     private Button mVerifyBtn;
 
@@ -40,10 +44,9 @@ public class OtpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_otp);
 
         changestatusbarcolor();
-        init();
         mAuthVerificationId = getIntent().getStringExtra("AuthCredentials");
         phoneNum = getIntent().getStringExtra("PhoneNumber");
-
+        init();
         mOtpText.setOtpListener(new OTPListener() {
             @Override
             public void onInteractionListener() {
@@ -76,6 +79,8 @@ public class OtpActivity extends AppCompatActivity {
         mCurrentUser = mAuth.getCurrentUser();
         mOtpText = findViewById(R.id.otpView);
         mVerifyBtn = findViewById(R.id.verifyOTP);
+        TextView mUserNumText = findViewById(R.id.userNum);
+        mUserNumText.setText("We have sent you an OTP at " + phoneNum + " please enter the OTP to verify");
     }
 
     private void changestatusbarcolor() {
@@ -94,11 +99,15 @@ public class OtpActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
 
                         FirebaseUser user = task.getResult().getUser();
-                        String uid = user.getUid();
+                        String uid = Objects.requireNonNull(user).getUid();
                         final FirebaseFirestore db = FirebaseFirestore.getInstance();
                         final DocumentReference docRef = db.collection("RestaurantList").document(uid);
 
-                        String deviceToken = FirebaseInstanceId.getInstance().getToken();
+                        FirebaseInstallations.getInstance().getToken(true).addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()){
+                                deviceToken = task1.getResult().getToken();
+                            }
+                        });
 
                         docRef.get().addOnSuccessListener(documentSnapshot -> {
 

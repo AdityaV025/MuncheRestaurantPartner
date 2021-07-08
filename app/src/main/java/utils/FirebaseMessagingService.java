@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;

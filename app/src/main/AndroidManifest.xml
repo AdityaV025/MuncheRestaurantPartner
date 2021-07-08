@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,12 +15,12 @@
         android:roundIcon="@mipmap/munche_res"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="UI.SetPrepTimeActivity" />
-        <activity android:name="UI.PaymentSettingsActivity" />
-        <activity android:name="UI.MyProfileActivity" />
-        <activity android:name="UI.CreateRestaurantActivity" />
-        <activity android:name="UI.OtpActivity" />
-        <activity android:name="UI.LoginActivity">
+        <activity android:name="ui.data.SetPrepTimeActivity" />
+        <activity android:name="ui.data.PaymentSettingsActivity" />
+        <activity android:name="ui.profile.MyProfileActivity" />
+        <activity android:name="ui.data.CreateRestaurantActivity" />
+        <activity android:name="ui.auth.OtpActivity" />
+        <activity android:name="ui.auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +28,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name="Utils.FirebaseMessagingService">
+        <service android:name="utils.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

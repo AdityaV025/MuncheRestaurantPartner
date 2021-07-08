@@ -1,7 +1,4 @@
-package UI;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+package ui.data;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,18 +7,20 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.muncherestaurantpartner.R;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import ui.profile.MyProfileActivity;
 
 public class PaymentSettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,10 +29,7 @@ public class PaymentSettingsActivity extends AppCompatActivity implements View.O
     private EditText mUPIIdEditText;
     private FirebaseFirestore db;
     private String ruid;
-    private static String RES_LIST = "RestaurantList";
-    private Button mSaveInfoBtn;
-    private Toolbar mPaymentToolBar;
-    private ImageView mGoBackArrow;
+    private static final String RES_LIST = "RestaurantList";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +41,7 @@ public class PaymentSettingsActivity extends AppCompatActivity implements View.O
     }
 
     private void init() {
-        mPaymentToolBar = findViewById(R.id.paymentToolBar);
-        mGoBackArrow = findViewById(R.id.goBackArrow);
+        ImageView mGoBackArrow = findViewById(R.id.goBackArrow);
         mGoBackArrow.setOnClickListener(view -> {
           this.onBackPressed();
         });
@@ -55,7 +50,7 @@ public class PaymentSettingsActivity extends AppCompatActivity implements View.O
         mCodCheckBox = findViewById(R.id.codCheckBox);
         mCreditCheckBox = findViewById(R.id.creditCheckBox);
         mUPICheckBox = findViewById(R.id.upiCheckBox);
-        mSaveInfoBtn = findViewById(R.id.savePaymentInfoBtn);
+        Button mSaveInfoBtn = findViewById(R.id.savePaymentInfoBtn);
         mUpiIdText = findViewById(R.id.upiIdText);
         mUPIIdEditText = findViewById(R.id.upiIdEditText);
         mUPICheckBox.setOnClickListener(this);

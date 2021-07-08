@@ -1,8 +1,4 @@
-package Utils;
-
-/**
- * Created by Aditya Verma on 20-06-2020
- */
+package utils;
 
 import android.Manifest;
 import android.app.Activity;

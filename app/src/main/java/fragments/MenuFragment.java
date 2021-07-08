@@ -1,4 +1,4 @@
-package Fragments;
+package fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -6,13 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,9 +20,6 @@ import com.bumptech.glide.Glide;
 import com.example.muncherestaurantpartner.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,13 +27,12 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.TestOnly;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import Models.MenuItemModel;
+import models.MenuItemModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -47,8 +40,6 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
-    private FirebaseUser mCurrentUser;
     private String Ruid;
     private TextView mCreateNewMenuBtn;
     private FirestoreRecyclerAdapter<MenuItemModel, MenuItemHolder> adapter;
@@ -75,8 +66,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
     private void init() {
         mCreateNewMenuBtn = view.findViewById(R.id.createNewMenuBtn);
         mCreateNewMenuBtn.setVisibility(View.VISIBLE);
-        mAuth = FirebaseAuth.getInstance();
-        mCurrentUser = mAuth.getCurrentUser();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mCurrentUser = mAuth.getCurrentUser();
         assert mCurrentUser != null;
         Ruid = mCurrentUser.getUid();
         db = FirebaseFirestore.getInstance();
@@ -190,7 +181,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.createNewMenuBtn:
                 Fragment fragment = new CreateNewMenuFragment();
-                FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                 fragmentTransaction.addToBackStack(null);

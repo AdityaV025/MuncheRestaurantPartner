@@ -1,20 +1,16 @@
-package Fragments;
+package fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.muncherestaurantpartner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,20 +21,17 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 public class CreateNewMenuFragment extends Fragment implements View.OnClickListener{
 
     private View view;
-    private MaterialSpinner mCategorySpinner, mFoodVegOrNotSpinner;
+    private MaterialSpinner mCategorySpinner;
     private EditText mMenuItemName, mMenuItemPrice, mMenuItemDesc;
-    private Button mSaveMenuItemInfo;
-    private FirebaseAuth mAuth;
-    private FirebaseUser mCurrentUser;
-    private String Ruid, mMenuCategory, mItemName, mItemVegOrNot, mItemPrice, mItemDesc;
+    private String Ruid;
+    private String mMenuCategory;
+    private String mItemVegOrNot;
     private FirebaseFirestore db;
-    private DocumentReference mMenuRef;
 
     public CreateNewMenuFragment() {
         // Required empty public constructor
@@ -57,15 +50,15 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
 
     private void init() {
 
-        mAuth = FirebaseAuth.getInstance();
-        mCurrentUser = mAuth.getCurrentUser();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mCurrentUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
         assert mCurrentUser != null;
         Ruid = mCurrentUser.getUid();
 
         mCategorySpinner = view.findViewById(R.id.chooseCategorySpinner);
-        mFoodVegOrNotSpinner = view.findViewById(R.id.foodVegOrNotSpinner);
-        mSaveMenuItemInfo = view.findViewById(R.id.saveItemInfoBtn);
+        MaterialSpinner mFoodVegOrNotSpinner = view.findViewById(R.id.foodVegOrNotSpinner);
+        Button mSaveMenuItemInfo = view.findViewById(R.id.saveItemInfoBtn);
         mMenuItemName = view.findViewById(R.id.newMenuItemEditText);
         mMenuItemPrice = view.findViewById(R.id.menuItemPrice);
         mMenuItemDesc = view.findViewById(R.id.menuItemDescription);
@@ -93,11 +86,11 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
 
         if (view.getId() == R.id.saveItemInfoBtn){
 
-            mItemName = mMenuItemName.getText().toString();
-            mItemPrice = mMenuItemPrice.getText().toString();
-            mItemDesc = mMenuItemDesc.getText().toString();
+            String mItemName = mMenuItemName.getText().toString();
+            String mItemPrice = mMenuItemPrice.getText().toString();
+            String mItemDesc = mMenuItemDesc.getText().toString();
 
-            mMenuRef = db.collection("Menu")
+            DocumentReference mMenuRef = db.collection("Menu")
                     .document(Ruid)
                     .collection("MenuItems")
                     .document(mItemName);
@@ -116,7 +109,7 @@ public class CreateNewMenuFragment extends Fragment implements View.OnClickListe
             mMenuRef.set(menuItemMap).addOnSuccessListener(aVoid -> {
                 Toast.makeText(getActivity(), "Uploaded", Toast.LENGTH_LONG).show();
                 Fragment fragment = new MenuFragment();
-                FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                 fragmentTransaction.addToBackStack(null);

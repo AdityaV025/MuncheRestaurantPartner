@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="UI.LoginActivity"
+    tools:context="ui.auth.LoginActivity"
     android:padding="28dp"
     android:background="@drawable/gradient_background">
 
@@ -88,51 +88,6 @@
             android:layout_marginTop="17dp"/>
 
         <TextView
-            android:id="@+id/or"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/sendOtpBtn"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginBottom="17dp"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/or"
-            android:textColor="@color/gray"
-            android:textSize="15sp" />
-
-        <Button
-            android:id="@+id/facebookLoginBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/or"
-            android:background="@drawable/other_login_btn_background"
-            android:drawableLeft="@drawable/fb_logo"
-            android:drawablePadding="6dp"
-            android:fontFamily="@font/open_sans_semibold"
-            android:gravity="left|center"
-            android:text="@string/continue_with_facebook"
-            android:textAllCaps="false"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/googleLoginBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/facebookLoginBtn"
-            android:layout_marginTop="11dp"
-            android:background="@drawable/other_login_btn_background"
-            android:drawableLeft="@drawable/google_logo"
-            android:drawablePadding="6dp"
-            android:fontFamily="@font/open_sans_semibold"
-            android:gravity="left|center"
-            android:text="@string/continue_with_google"
-            android:textAllCaps="false"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
-
-        <TextView
             android:id="@+id/terms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -141,7 +96,7 @@
             android:textSize="13sp"
             android:textColor="@color/colorAccent"
             android:fontFamily="@font/open_sans"
-            android:layout_below="@+id/googleLoginBtn"
+            android:layout_below="@+id/sendOtpBtn"
             android:layout_marginTop="20dp"/>
 
     </RelativeLayout>

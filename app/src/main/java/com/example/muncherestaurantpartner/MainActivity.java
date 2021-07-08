@@ -1,24 +1,23 @@
 package com.example.muncherestaurantpartner;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import Fragments.MenuFragment;
-import Fragments.OrdersFragment;
-import Fragments.SalesFragment;
-import UI.LoginActivity;
-import UI.MyProfileActivity;
+import fragments.MenuFragment;
+import fragments.OrdersFragment;
+import fragments.SalesFragment;
+import ui.auth.LoginActivity;
+import ui.profile.MyProfileActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
 
     @Override
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
     }
 

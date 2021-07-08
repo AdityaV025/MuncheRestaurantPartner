@@ -1,7 +1,4 @@
-package UI;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+package ui.profile;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -14,6 +11,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.muncherestaurantpartner.R;
@@ -30,8 +30,11 @@ import com.suke.widget.SwitchButton;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
+
+import ui.auth.LoginActivity;
+import ui.data.PaymentSettingsActivity;
+import ui.data.SetPrepTimeActivity;
 
 public class MyProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,9 +45,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     Uri mImageUri;
     private StorageReference mRestaurantImageRef;
     private StorageReference filePath;
-    private FirebaseUser mCurrentUser;
     String ruid, mRestaurantImageUrl;
-    private FirebaseFirestore restaurantDB;
     private DocumentReference mRestRef;
     private AVLoadingIndicatorView mLoadingView;
     private ProgressDialog progressDialog;
@@ -76,13 +77,13 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         mPrepTimeSettings = findViewById(R.id.prepTimeContainer);
         mRestaurantNameText = findViewById(R.id.restaurantNameText);
         mAuth = FirebaseAuth.getInstance();
-        mCurrentUser = mAuth.getCurrentUser();
+        FirebaseUser mCurrentUser = mAuth.getCurrentUser();
         assert mCurrentUser != null;
         ruid = mCurrentUser.getUid();
         mChangeRestaurantSpotImageBtn = findViewById(R.id.changeResSpotImageBtn);
         mRestaurantSpotImage = findViewById(R.id.restaurant_spotImage);
         mRestaurantImageRef = FirebaseStorage.getInstance().getReference();
-        restaurantDB  = FirebaseFirestore.getInstance();
+        FirebaseFirestore restaurantDB = FirebaseFirestore.getInstance();
         mRestRef = restaurantDB.collection("RestaurantList").document(ruid);
         mSwitchBtn = findViewById(R.id.acceptOrderSwitch);
         progressDialog = new ProgressDialog(this);
@@ -184,7 +185,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
                             uploadTask.addOnSuccessListener(taskSnapshot -> {
 
                                 if (task.isSuccessful()){
-                                    Map updateHashmap = new HashMap<>();
+                                    HashMap<String,Object> updateHashmap = new HashMap<>();
                                     updateHashmap.put("restaurant_spotimage", downloadUrl);
 
                                     mRestRef.update(updateHashmap).addOnSuccessListener(o -> {

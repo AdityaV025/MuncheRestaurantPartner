@@ -1,13 +1,13 @@
-package UI;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.muncherestaurantpartner.MainActivity;
 import com.example.muncherestaurantpartner.R;
@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button mSendOtpBtn, mLoginWithFbBtn, mLoginWithGoogleBtn, mLoginWithEmailBtn;
+    private Button mSendOtpBtn;
     private EditText mNumberText;
     private CountryCodePicker countryCodePicker;
     private FirebaseAuth mAuth;
@@ -87,9 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initialiseViews() {
         mSendOtpBtn = findViewById(R.id.sendOtpBtn);
-        mLoginWithFbBtn = findViewById(R.id.facebookLoginBtn);
-        mLoginWithGoogleBtn = findViewById(R.id.googleLoginBtn);
-//        mLoginWithEmailBtn = findViewById(R.id.emailLoginBtn);
+        //        mLoginWithEmailBtn = findViewById(R.id.emailLoginBtn);
         mNumberText = findViewById(R.id.loginInput);
         countryCodePicker = findViewById(R.id.countryCodeHolder);
         mAuth = FirebaseAuth.getInstance();

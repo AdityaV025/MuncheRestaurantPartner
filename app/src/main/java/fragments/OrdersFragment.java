@@ -1,16 +1,8 @@
-package Fragments;
+package fragments;
 
 import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +10,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.muncherestaurantpartner.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -29,7 +27,7 @@ import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import Models.RestaurantOrderItemModel;
+import models.RestaurantOrderItemModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.samanjafari.easycountdowntimer.CountDownInterface;
@@ -40,7 +38,6 @@ public class OrdersFragment extends Fragment {
     private View view;
     private FirebaseFirestore db;
     private String ruid;
-    private FirestoreRecyclerAdapter<RestaurantOrderItemModel, RestaurantItemHolder> orderAdapter;
     LinearLayoutManager linearLayoutManager;
     private RecyclerView mResOrderedItemRecyclerView;
     private String RES_LIST = "RestaurantList";
@@ -76,15 +73,15 @@ public class OrdersFragment extends Fragment {
                 .setQuery(query, RestaurantOrderItemModel.class)
                 .build();
 
-        orderAdapter = new FirestoreRecyclerAdapter<RestaurantOrderItemModel, RestaurantItemHolder>(orderedItemModel) {
+        FirestoreRecyclerAdapter<RestaurantOrderItemModel, RestaurantItemHolder> orderAdapter = new FirestoreRecyclerAdapter<RestaurantOrderItemModel, RestaurantItemHolder>(orderedItemModel) {
             @SuppressLint("SetTextI18n")
             @Override
             protected void onBindViewHolder(@NonNull RestaurantItemHolder holder, int position, @NonNull RestaurantOrderItemModel model) {
 
                 ArrayList<String> orderedItems = model.getOrdered_items();
-                for(int i = 0; i < orderedItems.size() ; i++){
+                for (int i = 0; i < orderedItems.size(); i++) {
                     TextView tv = new TextView(getContext());
-                    final Typeface typeface = ResourcesCompat.getFont(Objects.requireNonNull(getContext()), R.font.open_sans);
+                    final Typeface typeface = ResourcesCompat.getFont(requireContext(), R.font.open_sans);
                     tv.setText(orderedItems.get(i));
                     tv.setTypeface(typeface);
                     tv.setTextColor(getResources().getColor(R.color.colorAccent));
@@ -92,9 +89,9 @@ public class OrdersFragment extends Fragment {
                     holder.orderItemLayout.addView(tv);
                 }
 
-                if (model.getPayment_method().equals("COD")){
+                if (model.getPayment_method().equals("COD")) {
                     holder.mCodMethod.setVisibility(View.VISIBLE);
-                }else if(model.getPayment_method().equals("PAID")){
+                } else if (model.getPayment_method().equals("PAID")) {
                     holder.mPaidMethod.setVisibility(View.VISIBLE);
                 }
 
@@ -104,17 +101,17 @@ public class OrdersFragment extends Fragment {
                 holder.mOrderTime.setText(model.getShort_time());
                 holder.mTotalAmount.setText("TOTAL AMOUNT: " + model.getTotal_amount());
 
-                holder.countDownTextview.setTime(0,0,0,30);
+                holder.countDownTextview.setTime(0, 0, 0, 30);
                 holder.countDownTextview.startTimer();
-                final Typeface typeface2 = ResourcesCompat.getFont(Objects.requireNonNull(getContext()), R.font.open_sans_semibold);
+                final Typeface typeface2 = ResourcesCompat.getFont(requireContext(), R.font.open_sans_semibold);
                 holder.countDownTextview.setTypeFace(typeface2);
                 holder.countDownTextview.setOnTick(new CountDownInterface() {
                     @Override
                     public void onTick(long time) {
 
-                        if (time > 60000){
+                        if (time > 60000) {
                             holder.timeFormatText.setText("minutes left");
-                        }else {
+                        } else {
                             holder.timeFormatText.setText("seconds left");
                         }
 
@@ -133,12 +130,11 @@ public class OrdersFragment extends Fragment {
                     Toast.makeText(getContext(), "Order is Accepted", Toast.LENGTH_SHORT).show();
 
 
-
                 });
 
-                if (model.getExtra_instructions().equals("none")){
+                if (model.getExtra_instructions().equals("none")) {
                     holder.extraInstructionsText.setText("\u2022 No additional instruction");
-                }else {
+                } else {
                     holder.extraInstructionsText.setText("\u2022 " + model.getExtra_instructions());
                 }
             }

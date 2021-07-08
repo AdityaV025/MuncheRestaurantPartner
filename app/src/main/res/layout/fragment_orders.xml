@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Fragments.OrdersFragment"
+    tools:context="fragments.OrdersFragment"
     android:background="@color/blue_grey">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="Fragments.OrdersFragment">
+        tools:context="fragments.OrdersFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ordersRecyclerView"

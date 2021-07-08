@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="UI.OtpActivity"
+    tools:context="ui.auth.OtpActivity"
     android:padding="20dp">
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:textColor="@color/colorAccent"
-        android:fontFamily="@font/open_sans"/>
+        android:fontFamily="@font/open_sans" />
 
     <in.aabhasjindal.otptextview.OtpTextView
         android:id="@+id/otpView"
